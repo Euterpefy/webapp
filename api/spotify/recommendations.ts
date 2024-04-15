@@ -39,7 +39,7 @@ export const fetchRecommendations = async (
       }
     }
   }
-
+  console.log(params);
   try {
     const response = await spotifyInstance(token).get('/recommendations', {
       params: queryParams,

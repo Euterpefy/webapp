@@ -1,4 +1,4 @@
-import { SimplifiedTrack, Track } from './track';
+import { Track } from './track';
 
 export interface SpotifyRecommendationParameters {
   seed_genres?: string[];

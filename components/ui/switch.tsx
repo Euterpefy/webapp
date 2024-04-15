@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import { cn } from '@/lib/utils';
-import type { AdditionalProps } from '.';
+import type { AdditionalProps } from '..';
 
 // Define a type for the size variants
 type SwitchSize = 'xs' | 'sm' | 'lg';

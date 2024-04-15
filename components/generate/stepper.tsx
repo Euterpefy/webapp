@@ -20,10 +20,15 @@ import ArtistSelector from './selectors/artist';
 import TrackSelector from './selectors/track';
 import GeneratedPlaylist from './playlist';
 import { Icons } from '../icons';
+import PreferenceSliders from './selectors/preference-sliders';
 
 export const MAXSEEDS = 5;
 
-const GenerateSteps = (): JSX.Element => {
+interface Props {
+  advanced?: boolean;
+}
+
+const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
   const { data: session } = useSession();
 
   const [currentStep, setCurrentStep] = React.useState(1); // State to track the current step
@@ -41,9 +46,13 @@ const GenerateSteps = (): JSX.Element => {
   const totalSeeds =
     selectedGenres.length + selectedArtistIds.length + selectedTrackIds.length;
 
+  const [advancedPreferences, setAdvancedPreferences] = React.useState<
+    Record<string, number>
+  >({});
+
   // Function to go to the next step
   const handleNext = (): void => {
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -112,12 +121,14 @@ const GenerateSteps = (): JSX.Element => {
         toast.error(`Login session not found.`);
         return;
       }
+
       const res = await fetchRecommendations(session.token.access_token, {
         seed_genres: selectedGenres,
         seed_artists: selectedArtistIds,
         seed_tracks: selectedTrackIds,
         limit: 100,
         min_popularity: 50,
+        ...advancedPreferences, // Merge in advanced preferences dynamically
       });
 
       setRecommendedTracks(res.tracks);
@@ -139,15 +150,27 @@ const GenerateSteps = (): JSX.Element => {
   const NextButton = ({
     onClick,
   }: {
-    onClick: () => Promise<void>;
+    onClick?: () => Promise<void>;
   }): JSX.Element => (
     <Button
       onClick={() => {
-        onClick().then(() => {
+        if (onClick) {
+          onClick().then(() => {
+            if (advanced) {
+              if (totalSeeds === 5) {
+                setCurrentStep(4);
+              } else {
+                setCurrentStep((prev) => prev + 1);
+              }
+            } else {
+              handleNext();
+            }
+          });
+        } else {
           handleNext();
-        });
+        }
       }}
-      disabled={totalSeeds === 5 || totalSeeds === 0}
+      disabled={!advanced && (totalSeeds === 5 || totalSeeds === 0)}
       size={'sm'}
     >
       Next
@@ -260,6 +283,35 @@ const GenerateSteps = (): JSX.Element => {
                 selected={selectedTrackIds}
                 setSelected={setSelectedTrackIds}
                 totalSeeds={totalSeeds}
+              />
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              <div className="flex items-center gap-2">
+                <PreviousButton />
+                <Button onClick={startOver} variant="outline" size={'sm'}>
+                  Start Over
+                </Button>
+              </div>
+              <div className="flex gap-2 items-center">
+                <GenerateButton />
+                {advanced && <NextButton />}
+              </div>
+            </CardFooter>
+          </Card>
+        );
+      case 4:
+        return (
+          <Card>
+            <CardHeader>
+              <CardTitle>Step 4: Tracks preferences</CardTitle>
+              <CardDescription>Adjust your track preferences</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2">
+              {/* Render track selectors here */}
+              <PreferenceSliders
+                onValuesChange={(preferences) => {
+                  setAdvancedPreferences(preferences);
+                }}
               />
             </CardContent>
             <CardFooter className="flex justify-between">
