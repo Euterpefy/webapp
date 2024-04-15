@@ -7,7 +7,7 @@ import {
   Card,
 } from '@/components/ui/card';
 import { Track } from '@/types/spotify/track';
-import TrackList from '../tracks/tracklist';
+import TrackList from '../spotify/tracklist';
 
 import ImportPlaylistDialog from './import-playlist-dialog';
 
@@ -25,14 +25,18 @@ const GeneratedPlaylist: React.FC<Props> = ({ options }) => {
           <CardTitle>Generated Playlist</CardTitle>
           <CardDescription>
             This playlist is generated based on your selected preferences
-            <p>Total: {recommendedTracks.length} tracks</p>
-            <div className="flex items-center gap-4 mt-2">
-              <ImportPlaylistDialog />
-            </div>
+            <br />
+            <span>Total: {recommendedTracks.length} tracks</span>
           </CardDescription>
+          <div className="flex items-center gap-4 mt-2">
+            <ImportPlaylistDialog
+              trackIds={recommendedTracks.map((track) => track.id)}
+            />
+          </div>
         </CardHeader>
         <CardContent className="space-y-2 p-0 relative">
           <TrackList
+            hideIndex={true}
             tracks={recommendedTracks}
             onTrackRemove={(trackId: string) => {
               setRecommendedTracks((prev) =>

@@ -1,10 +1,11 @@
 import { Track } from '@/types/spotify/track';
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Icons } from '../icons';
 import { toast } from 'sonner';
 import { Pause, Play } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import useOnScreen from '@/hooks/use-on-screen';
 
 interface Props {
   tracks: Track[];
@@ -17,40 +18,26 @@ const TrackList: React.FC<Props> = ({
   onTrackRemove,
   hideIndex = false,
 }) => {
-  const [currentAudioUrl, setCurrentAudioUrl] = useState<string | null>(null);
-  const audioPlayer = useRef(new Audio());
-  const [visibleTracks, setVisibleTracks] = useState<Track[]>([]);
-  const [loadMore, setLoadMore] = useState(false);
-  const listRef = useRef<HTMLDivElement>(null);
+  const [currentAudioUrl, setCurrentAudioUrl] = React.useState<string | null>(
+    null
+  );
+  const audioPlayer = React.useRef(new Audio());
+  const [visibleTracks, setVisibleTracks] = React.useState<Track[]>([]);
+  const [loadMore, setLoadMore] = React.useState(false);
+  const listRef = React.useRef<HTMLDivElement>(null);
+  const isListRefVisible = useOnScreen(listRef);
+
+  React.useEffect(() => {
+    setLoadMore(true);
+  }, [isListRefVisible]);
 
   // Load initial tracks
-  useEffect(() => {
+  React.useEffect(() => {
     setVisibleTracks(tracks.slice(0, 10));
   }, [tracks]);
 
-  // Setup Intersection Observer to trigger loading more items
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setLoadMore(true);
-        }
-      },
-      {
-        root: null,
-        threshold: 0.1,
-      }
-    );
-
-    if (listRef.current) {
-      observer.observe(listRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   // Handle loading more tracks
-  useEffect(() => {
+  React.useEffect(() => {
     if (loadMore && visibleTracks.length < tracks.length) {
       const nextTracks = tracks.slice(
         visibleTracks.length,
@@ -61,7 +48,7 @@ const TrackList: React.FC<Props> = ({
     }
   }, [loadMore, visibleTracks, tracks]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const currentAudio = audioPlayer.current; // Capture the current value at the time of effect execution
     if (currentAudioUrl) {
       currentAudio.src = currentAudioUrl;

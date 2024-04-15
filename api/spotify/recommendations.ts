@@ -1,4 +1,4 @@
-// spotifyServices.ts
+// api/spotify/recommendations.ts
 
 import { spotifyInstance } from '@/config/spotify-api';
 import {

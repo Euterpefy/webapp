@@ -37,6 +37,7 @@ import TwitterSVG from './svgs/twitter';
 import PdfSVG from './svgs/pdf';
 import GIFSVG from './svgs/gif';
 import SiteLogo from './svgs/logo';
+import SpotifySVG from './svgs/spotify';
 
 export type Icon = LucideIcon;
 
@@ -73,4 +74,5 @@ export const Icons = {
   facebook: ({ ...props }: LucideProps) => <FacebookSVG {...props} />,
   instagram: ({ ...props }: LucideProps) => <InstagramSVG {...props} />,
   twitter: ({ ...props }: LucideProps) => <TwitterSVG {...props} />,
+  spotify: ({ ...props }: LucideProps) => <SpotifySVG {...props} />,
 };

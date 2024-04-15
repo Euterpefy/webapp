@@ -1,4 +1,5 @@
-// api/spotify.js
+// api/spotify/genre.ts
+
 import { spotifyInstance } from '@/config/spotify-api';
 
 const fetchGenres = async (accessToken: string): Promise<string[]> => {

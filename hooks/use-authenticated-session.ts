@@ -5,14 +5,16 @@ export function useAuthenticatedSession() {
   const { data, status, update } = useSession();
 
   useEffect(() => {
-    if (data && data.expires) {
-      const sessionExpired = new Date(data.expires) < new Date();
-      if (sessionExpired) {
-        // Session has expired
-        console.log('Session expired. Refreshing...');
-        signIn(data.user.provider); // You can customize this as needed
+    const interval = setInterval(() => {
+      if (data && data.expires && data.token) {
+        const sessionExpired = new Date(data.token.expires_at) < new Date();
+        if (sessionExpired) {
+          signIn('spotify');
+        }
       }
-    }
+    }, 1000); // Check every second
+
+    return () => clearInterval(interval); // Clean up the interval on component unmount
   }, [data]);
 
   return { data, status, update };

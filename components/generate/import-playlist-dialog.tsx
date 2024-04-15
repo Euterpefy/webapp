@@ -9,42 +9,146 @@ import {
   ResponsiveModalTitle,
   ResponsiveModalTrigger,
 } from '@/components/ui/responsive-modal';
-import { Button } from '../ui/button';
+import { Button, buttonVariants } from '../ui/button';
+import { NewPlaylist } from '@/types/spotify/playlist';
+import NewPlaylistForm from '../forms/create-playlist';
+import { toast } from 'sonner';
+import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
+import { addPlaylistItems, createPlaylist } from '@/api/spotify/playlist';
+import ImportToExistingPlaylist from '../forms/import-to-existing';
+import { Icons } from '../icons';
+import { cn } from '@/lib/utils';
 
-const ImportPlaylistDialog = () => {
+interface Props {
+  trackIds: string[];
+}
+
+const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
   const [open, setOpen] = React.useState(false);
+
+  const [importOption, setImportOption] = React.useState<'' | 'new' | 'add'>(
+    ''
+  );
+
+  const { data: session, status } = useAuthenticatedSession();
+
+  const handlePlaylistCreate = async (
+    newPlaylist: NewPlaylist
+  ): Promise<void> => {
+    try {
+      if (status === 'loading') {
+        return;
+      }
+      if (!session || !session.token || !session.user) {
+        return;
+      }
+
+      // Create the playlist
+      const playlist = await createPlaylist(
+        session.token.access_token,
+        session.user.id,
+        newPlaylist
+      );
+
+      if (!playlist || !playlist.id) {
+        throw new Error('Failed to create playlist');
+      }
+
+      // // Add tracks to the playlist
+      try {
+        await addPlaylistItems(
+          session.token.access_token,
+          playlist.id,
+          trackIds
+        );
+        setOpen(false);
+        setImportOption('');
+        toast.success('Playlist created and tracks added successfully!');
+      } catch (e) {
+        toast.error(`Failed to add items to playlist: ${e}`);
+      }
+    } catch (error) {
+      // console.error('Error in creating playlist:', error);
+      toast.error(`Failed to create new playlist: ${error ?? 'Unknown error'}`);
+    }
+  };
+
   return (
     <ResponsiveModal open={open} onOpenChange={setOpen}>
-      <ResponsiveModalTrigger>
-        <Button size={'sm'} variant={'success'}>
-          Import to Spotify
-        </Button>
+      <ResponsiveModalTrigger
+        className={cn(
+          buttonVariants({ variant: 'success', size: 'sm' }),
+          'flex items-center gap-2'
+        )}
+      >
+        <Icons.spotify />
+        Import to Spotify
       </ResponsiveModalTrigger>
       <ResponsiveModalContent>
         <ResponsiveModalHeader>
           <ResponsiveModalTitle>Import To Spotify</ResponsiveModalTitle>
           <ResponsiveModalDescription className="flex flex-col gap-2">
-            Enter details for your playlist
+            {importOption === '' && 'How would you like to import?'}
+            {importOption === 'new' && 'Enter details for you new playlist'}
+            {importOption === 'add' && 'Choose a playlist...'}
           </ResponsiveModalDescription>
         </ResponsiveModalHeader>
+        <div className="px-4 md:px-0">
+          {importOption === '' && (
+            <div className="flex items-center gap-2 justify-center">
+              <div
+                className="bg-primary text-primary-foreground rounded-lg p-4 cursor-pointer"
+                onClick={() => {
+                  setImportOption('new');
+                }}
+              >
+                Create new playlist
+              </div>
+              <div
+                className="bg-warning text-warning-foreground rounded-lg p-4 cursor-pointer"
+                onClick={() => {
+                  setImportOption('add');
+                }}
+              >
+                Import to an existing playlist
+              </div>
+            </div>
+          )}
+          {importOption === 'new' && (
+            <NewPlaylistForm
+              onSave={(newPlaylist) => {
+                handlePlaylistCreate(newPlaylist).catch(() => {
+                  toast.error(`Failed to create new playlist`);
+                });
+              }}
+            />
+          )}
+          {importOption === 'add' && (
+            <ImportToExistingPlaylist trackIds={trackIds} />
+          )}
+        </div>
         <ResponsiveModalFooter>
-          <ResponsiveModalClose className="flex items-center gap-2">
-            <Button
-              size={'sm'}
-              variant={'secondary'}
-              className="px-2 rounded-lg"
+          <div className="flex items-center justify-between gap-2">
+            {importOption !== '' && (
+              <Button
+                size={'sm'}
+                variant={'outline'}
+                onClick={() => {
+                  setImportOption('');
+                }}
+              >
+                Back
+              </Button>
+            )}
+            <ResponsiveModalClose
+              className={cn(
+                buttonVariants({ variant: 'destructive', size: 'sm' }),
+                'flex items-center justify-between gap-2'
+              )}
             >
               Cancel
-            </Button>
-            <Button
-              size={'sm'}
-              variant={'destructive'}
-              className="px-2 rounded-lg"
-              onClick={() => {}}
-            >
-              Import
-            </Button>
-          </ResponsiveModalClose>
+            </ResponsiveModalClose>
+          </div>
         </ResponsiveModalFooter>
       </ResponsiveModalContent>
     </ResponsiveModal>

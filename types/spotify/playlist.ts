@@ -27,7 +27,7 @@ export interface Playlist {
   owner: SimplifiedUser;
   public: boolean;
   snapshot_id: string;
-  tracks: PagedResponse<PlaylistTrack>;
+  tracks: SimplifiedPlaylistTracks;
 }
 
 export interface PlaylistTrack {
@@ -54,5 +54,5 @@ export interface SimplifedPlaylist {
 
 export interface SimplifiedPlaylistTracks {
   href: string;
-  toal: number;
+  total: number;
 }

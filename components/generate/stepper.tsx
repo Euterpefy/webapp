@@ -19,8 +19,10 @@ import GenreSelector from './selectors/genre';
 import ArtistSelector from './selectors/artist';
 import TrackSelector from './selectors/track';
 import GeneratedPlaylist from './playlist';
+import { Icons } from '../icons';
 
 export const MAXSEEDS = 5;
+
 const GenerateSteps = (): JSX.Element => {
   const { data: session } = useSession();
 
@@ -160,7 +162,9 @@ const GenerateSteps = (): JSX.Element => {
       onClick={() => {
         generateTracks();
       }}
+      className="gap-2"
     >
+      <Icons.spotify />
       Generate playlist
     </Button>
   );
@@ -176,6 +180,11 @@ const GenerateSteps = (): JSX.Element => {
       case 0:
         return (
           <div className="flex flex-col gap-2">
+            <div>
+              <Button onClick={startOver} variant="outline" size={'sm'}>
+                Start Over
+              </Button>
+            </div>
             <GeneratedPlaylist options={recommendedTracks} />
           </div>
         );
