@@ -1,7 +1,7 @@
 import { MainNavItem, SiteConfig } from '@/types';
 
 export const siteConfig: SiteConfig = {
-  name: 'Euteperfy',
+  name: 'Euterpefy',
   description: 'Music playlist recommender and generator',
   href: '/',
   mainNav: [],

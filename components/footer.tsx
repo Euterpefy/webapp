@@ -6,6 +6,7 @@ import type { AdditionalProps } from '.';
 import { ModeToggle } from './mode-toggle';
 import { Icons } from './icons';
 import { rubikFont } from '@/styles/fonts';
+import { siteConfig } from '@/config/site';
 
 /**
  * Renders the footer section of the application
@@ -26,7 +27,7 @@ export function Footer({ className }: AdditionalProps): JSX.Element {
                 'uppercase font-bold text-xl '
               )}
             >
-              Euteperfy
+              {siteConfig.name}
             </span>
           </a>
           <span className="text-sm mt-2 text-muted-foreground">
