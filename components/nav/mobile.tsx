@@ -39,9 +39,13 @@ export function MobileNav({
   return (
     <div
       className={cn(
-        'fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-bottom-80 md:hidden backdrop-blur-lg'
+        'fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto py-6 pb-32 shadow-md animate-in slide-in-from-bottom-80 md:hidden backdrop-blur-sm'
       )}
     >
+      <div
+        className="fixed top-0 left-0 right-0 bottom-0 z-10"
+        onClick={onClose}
+      />
       <div className="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md">
         <Link
           href={'/'}
@@ -55,9 +59,13 @@ export function MobileNav({
           {items.map((item, index) => {
             if (isNavMenu(item)) {
               return (
-                <Collapsible key={index}>
+                <Collapsible key={index} className="group">
                   <CollapsibleTrigger className="flex items-center gap-2 text-foreground">
-                    {item.title} <ChevronDown />
+                    {item.title}
+                    <ChevronDown
+                      size={16}
+                      className="transition duration-200 group-data-[state=open]:rotate-180"
+                    />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     {item.items.map((nav_item, i) => {

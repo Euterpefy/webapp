@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import { signIn, useSession } from 'next-auth/react';
 import { toast } from 'sonner';
-import { Skeleton } from '../ui/skeleton';
+import { Skeleton } from '../../ui/skeleton';
 import { useRouter } from 'next/navigation';
 
 const CallToAction = (): JSX.Element => {
@@ -26,7 +26,7 @@ const CallToAction = (): JSX.Element => {
       {status === 'loading' ? (
         <Skeleton className="rounded-lg w-24 h-10" />
       ) : (
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-4">
           <Button
             className="rounded-[24px]"
             variant={'success'}
@@ -34,7 +34,7 @@ const CallToAction = (): JSX.Element => {
               handleButtonClick('/generate');
             }}
           >
-            Quick Generating
+            Quick Playlist Generating
           </Button>
           <Button
             className="rounded-[24px]"
@@ -43,7 +43,7 @@ const CallToAction = (): JSX.Element => {
               handleButtonClick('/advanced-generate');
             }}
           >
-            Advanced Generating
+            Advanced Playlist Generating
           </Button>
         </div>
       )}

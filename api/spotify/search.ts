@@ -1,3 +1,5 @@
+// api/spotify/search.ts
+
 import { spotifyInstance } from '@/config/spotify-api';
 import { SearchRequestParams, SearchResult } from '@/types/spotify/search';
 
