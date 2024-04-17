@@ -1,12 +1,5 @@
 import { MainNavItem, SiteConfig } from '@/types';
 
-export const siteConfig: SiteConfig = {
-  name: 'Euterpefy',
-  description: 'Music playlist recommender and generator',
-  href: '/',
-  mainNav: [],
-};
-
 export const mainNavItems: MainNavItem[] = [
   {
     title: 'Features',
@@ -31,6 +24,27 @@ export const mainNavItems: MainNavItem[] = [
         href: '/privacy',
         description: 'Our privacy policy',
       },
+      {
+        title: 'Terms of Service',
+        href: '/terms-of-service',
+      },
     ],
   },
 ];
+
+export const siteConfig: SiteConfig = {
+  name: 'Euterpefy',
+  description: 'Music playlist recommender and generator',
+  href: '/',
+  mainNav: mainNavItems,
+  footerNav: [
+    {
+      title: 'Privacy policy',
+      href: '/privacy',
+    },
+    {
+      title: 'Terms of Service',
+      href: '/terms-of-service',
+    },
+  ],
+};
