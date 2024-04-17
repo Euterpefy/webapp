@@ -11,7 +11,7 @@ import { Icons } from '../icons';
 
 const HomePageAlert = () => {
   return (
-    <section className="p-4">
+    <section className="px-4">
       <Alert>
         <Terminal className="h-4 w-4" />
         <AlertTitle>Heads up!</AlertTitle>
