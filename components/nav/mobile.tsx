@@ -55,13 +55,13 @@ export function MobileNav({
           <Icons.logo size={32} />
           <span className="font-bold">{siteConfig.name}</span>
         </Link>
-        <nav className="grid grid-flow-row auto-rows-max text-sm">
+        <nav className="grid grid-flow-row auto-rows-max text-sm gap-2">
           {items.map((item, index) => {
             if (isNavMenu(item)) {
               return (
                 <Collapsible key={index} className="group">
                   <CollapsibleTrigger className="flex items-center gap-2 text-foreground">
-                    {item.title}
+                    <span className="text-md font-bold">{item.title}</span>
                     <ChevronDown
                       size={16}
                       className="transition duration-200 group-data-[state=open]:rotate-180"
