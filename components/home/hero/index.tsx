@@ -67,10 +67,11 @@ const HeroSection = () => {
         </div>
       </div>
       {userTopTrack && (
-        <div className="absolute bottom-0 right-0 text-end font-bold text-sm text-black backdrop-blur-md px-2 py-1 rounded-lg">
+        <div className="absolute bottom-10 right-0 text-end font-bold text-sm text-white/70 px-2 py-1">
           <div className="w-fit flex items-center gap-2">
             <Icons.spotify size={20} />
-            {userTopTrack.name}
+            {userTopTrack.name} -{' '}
+            {userTopTrack.artists.map((a) => a.name).join(', ')}
           </div>
         </div>
       )}
