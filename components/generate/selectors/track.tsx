@@ -6,6 +6,7 @@ import { type ItemsSelectorProps, SelectorItem } from '.';
 import { MAXSEEDS } from '../stepper';
 import { Track } from '@/types/spotify/track';
 import Image from 'next/image';
+import { Icons } from '@/components/icons';
 
 const TrackSelector: React.FC<ItemsSelectorProps<Track>> = ({
   options,
@@ -31,7 +32,8 @@ const TrackSelector: React.FC<ItemsSelectorProps<Track>> = ({
             }
           }}
         >
-          <div className="flex items-center gap-2 h-12">
+          <div className="relative flex items-center gap-2 h-12">
+            <Icons.spotify className="absolute top-0 right-[-20px] text-success" />
             <Image
               src={option.album.images[0].url}
               width={45}

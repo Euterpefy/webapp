@@ -51,10 +51,17 @@ const TrackList: React.FC<Props> = ({
   React.useEffect(() => {
     const currentAudio = audioPlayer.current; // Capture the current value at the time of effect execution
     if (currentAudioUrl) {
+      toast.success('Playing track preview...', {
+        description: 'Preview content from Spotify',
+      });
       currentAudio.src = currentAudioUrl;
       currentAudio
         .play()
         .catch((error) => console.error('Error playing the track:', error));
+      // Set currentAudioUrl to null when the audio has finished playing
+      currentAudio.addEventListener('ended', () => {
+        setCurrentAudioUrl(null);
+      });
     }
 
     // Use the captured value in the cleanup function
@@ -83,7 +90,7 @@ const TrackList: React.FC<Props> = ({
       {visibleTracks.map((track, index) => (
         <div
           key={track.id}
-          className="track-item rounded-lg p-2 flex items-center justify-between hover:bg-secondary/80 cursor-pointer transition-colors ease-in-out"
+          className="rounded-lg p-2 flex items-center justify-between hover:bg-secondary/80 cursor-pointer transition-colors ease-in-out relative"
           onClick={() => handleTrackClick(track.preview_url)}
         >
           {/* Track details */}
@@ -109,6 +116,8 @@ const TrackList: React.FC<Props> = ({
           </div>
           {/* Icons */}
           <div className="flex items-center gap-2">
+            <Icons.spotify className="text-success" />
+
             {/* Conditional rendering of icons based on preview URL and visibility */}
             <div>
               {track.preview_url && currentAudioUrl === track.preview_url ? (
