@@ -1,4 +1,4 @@
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { refreshAccessToken } from '@/api/spotify/auth';
 import {
@@ -10,8 +10,6 @@ import type { SessionToken } from '@/types/next-auth';
 import type { User } from '@/types/spotify/user';
 import NextAuth from 'next-auth';
 import SpotifyProvider from 'next-auth/providers/spotify';
-
-// https://discord.com/developers/docs/topics/oauth2#shared-resources-oauth2-scopes
 
 const handler = NextAuth({
   secret: AUTH_SECRET,
@@ -48,7 +46,6 @@ const handler = NextAuth({
 
       return session;
     },
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     async jwt({ token, user, account, profile }) {
       if (token.account) {
         const now = Date.now();
@@ -71,9 +68,7 @@ const handler = NextAuth({
       }
       return token;
     },
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     async signIn({ user, account, profile }) {
-      // Make an HTTP request to your API backend
       if (account) {
         return true;
       } else {
