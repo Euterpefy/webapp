@@ -4,9 +4,8 @@ import { HttpStatusCode } from 'axios';
 
 /**
  * Recursively fetches all items from a paged API endpoint.
- *
- * @param initialResponse - The initial paged response from the API.
  * @param accessToken - The access token for authentication with the API.
+ * @param url - url to fetch the paged response of type T
  * @returns - A promise that resolves to an array of all items across all pages.
  */
 async function fetchAllItems<T>(

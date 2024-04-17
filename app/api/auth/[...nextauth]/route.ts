@@ -1,15 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { refreshAccessToken } from '@/api/spotify/auth';
-import {
-  AUTH_SECRET,
-  SPOTIFY_CLIENT_ID,
-  SPOTIFY_CLIENT_SECRET,
-} from '@/config/spotify-api';
+import { refreshAccessToken } from '@/lib/api/spotify/auth';
+
 import type { SessionToken } from '@/types/next-auth';
 import type { User } from '@/types/spotify/user';
 import NextAuth from 'next-auth';
 import SpotifyProvider from 'next-auth/providers/spotify';
+
+// https://developer.spotify.com/documentation/web-api/concepts/scopes
+
+const AUTH_SECRET = process.env.AUTH_SECRET ?? '';
+const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID ?? '';
+const SPOTIFY_CLIENT_SECRET =
+  process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET ?? '';
 
 const handler = NextAuth({
   secret: AUTH_SECRET,

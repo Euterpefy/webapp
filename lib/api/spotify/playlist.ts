@@ -58,7 +58,6 @@ const BATCH_SIZE = 100;
 
 /**
  * Adds items to a Spotify playlist, handling more than 100 items by batching.
- *
  * @param accessToken - The access token for authentication with the Spotify API.
  * @param playlistId - The ID of the playlist to which tracks are being added.
  * @param trackIds - An array of Spotify track IDs to add to the playlist.

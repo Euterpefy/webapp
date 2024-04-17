@@ -14,7 +14,7 @@ import { Progress } from '../ui/progress';
 import { useSession } from 'next-auth/react';
 import { Track, TrackArtist } from '@/types/spotify/track';
 import { toast } from 'sonner';
-import { fetchRecommendations } from '@/api/spotify/recommendations';
+import { fetchRecommendations } from '@/lib/api/spotify/recommendations';
 import GenreSelector from './selectors/genre';
 import ArtistSelector from './selectors/artist';
 import TrackSelector from './selectors/track';

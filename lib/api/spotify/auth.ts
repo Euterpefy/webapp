@@ -2,7 +2,10 @@
 
 import { SessionToken } from '@/types/next-auth';
 import axios from 'axios';
-import { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } from '@/config/spotify-api';
+
+const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID ?? '';
+const SPOTIFY_CLIENT_SECRET =
+  process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET ?? '';
 
 export const refreshAccessToken = async (
   token: SessionToken

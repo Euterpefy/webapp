@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { toast } from 'sonner';
-import { searchSpotify } from '@/api/spotify/search';
+import { searchSpotify } from '@/lib/api/spotify/search';
 import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
 import { Badge } from '@/components/ui/badge';
 

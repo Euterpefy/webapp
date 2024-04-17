@@ -6,7 +6,7 @@ import AudioWaveform from '../../spotify/waveforms';
 import { Icons } from '@/components/icons';
 import { useSession } from 'next-auth/react';
 import { Track } from '@/types/spotify/track';
-import fetchUserTopItems from '@/api/spotify/user-top-items';
+import fetchUserTopItems from '@/lib/api/spotify/user-top-items';
 
 const HeroSection = () => {
   const [audioUrl, setAudioUrl] = React.useState(

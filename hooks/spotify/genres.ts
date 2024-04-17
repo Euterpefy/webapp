@@ -1,6 +1,6 @@
 // hooks/useGenres.ts
 
-import { fetchGenres } from '@/api/spotify/genre';
+import { fetchGenres } from '@/lib/api/spotify/genre';
 import { useQuery } from 'react-query';
 
 const useGenres = (token: string | undefined) => {

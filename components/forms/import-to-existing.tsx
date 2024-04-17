@@ -10,14 +10,14 @@ import {
   SelectScrollUpButton,
   SelectScrollDownButton,
 } from '@/components/ui/select'; // Adjust import paths
-import { addPlaylistItems } from '@/api/spotify/playlist';
+import { addPlaylistItems } from '@/lib/api/spotify/playlist';
 import { Playlist, PlaylistTrack } from '@/types/spotify/playlist';
 import { toast } from 'sonner';
 import { Button } from '../ui/button';
 import { RefreshCcw } from 'lucide-react';
 import CoverImage from '../spotify/cover-image';
 import { Skeleton } from '../ui/skeleton';
-import { fetchAllItems } from '@/api/spotify/fetch-all';
+import { fetchAllItems } from '@/lib/api/spotify/fetch-all';
 import { useFetchMoreItems } from '@/hooks/spotify/fetch-more';
 import { cn } from '@/lib/utils';
 
