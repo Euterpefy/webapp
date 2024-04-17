@@ -21,7 +21,7 @@ const GeneratedPlaylist: React.FC<Props> = ({ options }) => {
   return (
     <div>
       <Card className="mb-4 ">
-        <CardHeader className="p-4 md:p-6 sticky top-[65px] z-50 bg-secondary">
+        <CardHeader className="p-4 md:p-6 sticky top-[65px] z-20 bg-secondary">
           <CardTitle>Generated Playlist</CardTitle>
           <CardDescription>
             This playlist is generated based on your selected preferences
