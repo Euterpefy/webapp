@@ -41,4 +41,5 @@ export type SiteConfig = {
   description: string;
   href: string;
   mainNav: MainNavItem[];
+  footerNav?: NavItem[];
 };
