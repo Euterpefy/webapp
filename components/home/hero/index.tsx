@@ -17,7 +17,7 @@ const HeroSection = () => {
     >
       <div className="p-8 flex flex-col justify-center ml-0 sm:ml-auto mr-0 sm:mr-12 items-center sm:items-end h-full gap-4 max-w-[600px]">
         <p
-          className={`text-5xl font-bold text-center sm:text-end text-white backdrop-blur-sm rounded-lg p-2 ${rubikFont.className}`}
+          className={`text-5xl font-bold text-center sm:text-end text-white rounded-lg p-2 ${rubikFont.className}`}
         >
           Generate Spotify playlists based on your mood within seconds
         </p>
