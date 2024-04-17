@@ -340,7 +340,10 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
           <Progress value={(totalSeeds / MAXSEEDS) * 100} />
         </div>
       )}
-      <div>{renderStep()}</div>
+      <div className="relative">
+        {renderStep()}
+        <Icons.spotify className="absolute top-0 right-0" />
+      </div>
     </>
   );
 };
