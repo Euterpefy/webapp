@@ -20,12 +20,12 @@ export const mainNavItems: MainNavItem[] = [
         description:
           'Create playlists from your top genres, tracks, and artists.',
       },
-      {
-        title: 'Discovery Composer Generator',
-        href: '/generate/favorites-mixer',
-        description:
-          'Search and select artists and tracks to discover new music.',
-      },
+      // {
+      //   title: 'Discovery Composer Generator',
+      //   href: '/generate/favorites-mixer',
+      //   description:
+      //     'Search and select artists and tracks to discover new music.',
+      // },
     ],
   },
   {
