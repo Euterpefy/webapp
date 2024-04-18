@@ -18,7 +18,9 @@ const GenreSelector: React.FC<SeedSelectorProps & GenreSelectorProps> = ({
   genreOptions,
 }) => {
   const { data: genres, isLoading, isError, error } = useGenres(accessToken);
-  const genreList = [...(genreOptions ?? []), ...(genres ?? [])];
+  const genreList = Array.from(
+    new Set([...(genreOptions ?? []), ...(genres ?? [])])
+  );
 
   if (isLoading) return <p>Loading genres...</p>;
   if (isError) return <p>Error loading genres: {error?.message}</p>;
