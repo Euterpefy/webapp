@@ -5,6 +5,8 @@ import { signIn, useSession } from 'next-auth/react';
 import { toast } from 'sonner';
 import { Skeleton } from '../../ui/skeleton';
 import { useRouter } from 'next/navigation';
+import OptionsDialogButton from '@/components/generate/options/dialog';
+import { Icons } from '@/components/icons';
 
 const CallToAction = (): JSX.Element => {
   const { data: session, status } = useSession();
@@ -28,23 +30,19 @@ const CallToAction = (): JSX.Element => {
       ) : (
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Button
-            className="rounded-[24px]"
+            className="rounded-[24px] gap-2"
             variant={'success'}
             onClick={() => {
               handleButtonClick('/generate');
             }}
           >
+            <Icons.spotify />
             Quick Playlist Generating
           </Button>
-          <Button
-            className="rounded-[24px]"
-            variant={'warning'}
-            onClick={() => {
-              handleButtonClick('/advanced-generate');
-            }}
-          >
-            Advanced Playlist Generating
-          </Button>
+
+          <OptionsDialogButton>
+            Advanced Playlist Generators
+          </OptionsDialogButton>
         </div>
       )}
     </>

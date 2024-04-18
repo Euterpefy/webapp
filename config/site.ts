@@ -2,17 +2,29 @@ import { MainNavItem, SiteConfig } from '@/types';
 
 export const mainNavItems: MainNavItem[] = [
   {
-    title: 'Features',
+    title: 'Playlist Generators',
     items: [
       {
-        title: 'Quick Generating',
-        href: '/generate',
+        title: 'Quick Generator',
+        href: '/generate/quick-playlists',
         description: 'Quick generation with 3 simple steps',
       },
       {
-        title: 'Advanced Generating',
-        href: '/advanced-generate',
-        description: `Adjust your playlist's mood, loudness, popularity, etc.`,
+        title: 'Mood Tuner Generator',
+        href: '/generate/mood-tuner',
+        description: `Customize playlists to match your mood`,
+      },
+      {
+        title: 'Favorites Mixer Generator',
+        href: '/generate/favorites-mixer',
+        description:
+          'Create playlists from your top genres, tracks, and artists.',
+      },
+      {
+        title: 'Discovery Composer Generator',
+        href: '/generate/favorites-mixer',
+        description:
+          'Search and select artists and tracks to discover new music.',
       },
     ],
   },

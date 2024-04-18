@@ -2,7 +2,7 @@
 
 import { Icons } from '@/components/icons';
 import AudioWaveform from '@/components/spotify/waveforms';
-import fetchUserTopItems from '@/lib/api/spotify/user-top-items';
+import { fetchUserTopItems } from '@/lib/api/spotify/user-top-items';
 import { Track } from '@/types/spotify/track';
 import { useSession } from 'next-auth/react';
 import React from 'react';
@@ -45,10 +45,9 @@ const HomePageAudioWaves = () => {
       />
       {userTopTrack && (
         <div className="absolute bottom-10 right-0 text-end font-bold text-sm text-white/70 px-2 py-1">
-          <div className="w-fit flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <Icons.spotify size={20} />
-            {userTopTrack.name} -{' '}
-            {userTopTrack.artists.map((a) => a.name).join(', ')}
+            {userTopTrack.name}
           </div>
         </div>
       )}

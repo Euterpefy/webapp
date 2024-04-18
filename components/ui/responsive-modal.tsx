@@ -24,6 +24,7 @@ import {
 import { useMediaQuery } from '@/hooks/use-media-query';
 
 import { cn } from '@/lib/utils';
+import { ButtonProps } from './button';
 
 interface BaseProps {
   children: React.ReactNode;
@@ -76,19 +77,19 @@ const ResponsiveModalComponent: React.FC<RootModalProps> = ({
   );
 };
 
-const ResponsiveModalTrigger: React.FC<ModalProps> = ({
-  children,
-  className,
-  ...props
-}) => {
-  const { isDesktop } = useContext(ResponsiveModalContext);
-  const ModalTrigger = isDesktop ? DialogTrigger : DrawerTrigger;
-  return (
-    <ModalTrigger className={className} {...props}>
-      {children}
-    </ModalTrigger>
-  );
-};
+const ResponsiveModalTrigger = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ children, className, ...props }, ref) => {
+    const { isDesktop } = useContext(ResponsiveModalContext);
+    const ModalTrigger = isDesktop ? DialogTrigger : DrawerTrigger;
+    return (
+      <ModalTrigger className={className} {...props} ref={ref}>
+        {children}
+      </ModalTrigger>
+    );
+  }
+);
+
+ResponsiveModalTrigger.displayName = 'ResponsiveModalTrigger';
 
 const ResponsiveModalContent: React.FC<ModalProps> = ({
   children,
