@@ -33,7 +33,7 @@ const CallToAction = (): JSX.Element => {
             className="rounded-[24px] gap-2"
             variant={'success'}
             onClick={() => {
-              handleButtonClick('/generate');
+              handleButtonClick('/generate/quick-playlists');
             }}
           >
             <Icons.spotify />

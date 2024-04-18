@@ -9,14 +9,14 @@ import {
   ResponsiveModalTitle,
   ResponsiveModalTrigger,
 } from '@/components/ui/responsive-modal';
-import { Button, buttonVariants } from '../ui/button';
+import { Button, buttonVariants } from '../../../../components/ui/button';
 import { NewPlaylist } from '@/types/spotify/playlist';
-import NewPlaylistForm from '../forms/create-playlist';
+import NewPlaylistForm from '../../../../components/forms/create-playlist';
 import { toast } from 'sonner';
 import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
 import { addPlaylistItems, createPlaylist } from '@/lib/api/spotify/playlist';
-import ImportToExistingPlaylist from '../forms/import-to-existing';
-import { Icons } from '../icons';
+import ImportToExistingPlaylist from '../../../../components/forms/import-to-existing';
+import { Icons } from '../../../../components/icons';
 import { cn } from '@/lib/utils';
 
 interface Props {

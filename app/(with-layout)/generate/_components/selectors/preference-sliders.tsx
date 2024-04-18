@@ -86,7 +86,7 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
         {trackFeatures
           .filter((feature) => featureKeys.includes(feature.key))
           .map((feature) => {
-            const { key, defaultValue, ...props } = feature;
+            const { key, defaultValue } = feature;
             return (
               <div key={key} className="flex flex-col gap-2">
                 <Label className="capitalize flex items-center justify-between">
@@ -99,7 +99,7 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
                 </Label>
 
                 <RangeSlider
-                  {...props}
+                  {...feature}
                   size="sm"
                   onValueChange={(value) => {
                     setPreferences((prev) => ({
@@ -109,18 +109,6 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
                     }));
                   }}
                 />
-                {/* <Label className="capitalize">
-                Target {key}: {getTargetValue(key) ?? defaultTarget}
-              </Label>
-              <Slider
-                defaultValue={[defaultTarget]}
-                onValueChange={(value) => {
-                  setPreferences((prev) => ({
-                    ...prev,
-                    [`target_${key}`]: value[0],
-                  }));
-                }}
-              /> */}
               </div>
             );
           })}

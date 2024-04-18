@@ -3,8 +3,8 @@
 import React from 'react';
 import { type ItemsSelectorProps, SelectorItem } from '.';
 
-import { MAXSEEDS } from '../stepper';
 import { TrackArtist } from '@/types/spotify/track';
+import { MAXSEEDS } from '@/config/spotify-api';
 
 const ArtistSelector: React.FC<ItemsSelectorProps<TrackArtist>> = ({
   options,

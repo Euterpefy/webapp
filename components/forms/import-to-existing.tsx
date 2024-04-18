@@ -17,7 +17,7 @@ import { Button } from '../ui/button';
 import { RefreshCcw } from 'lucide-react';
 import CoverImage from '../spotify/cover-image';
 import { Skeleton } from '../ui/skeleton';
-import { fetchAllItems } from '@/lib/api/spotify/fetch-all';
+import { fetchAllItems } from '@/lib/api/spotify/fetch-pages';
 import { useFetchMoreItems } from '@/hooks/spotify/fetch-more';
 import { cn } from '@/lib/utils';
 

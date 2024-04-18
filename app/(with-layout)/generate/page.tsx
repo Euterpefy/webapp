@@ -1,37 +1,18 @@
-'use client';
-
-import GenerateSteps from '@/components/generate/stepper';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
-import { signIn } from 'next-auth/react';
 import React from 'react';
-import { toast } from 'sonner';
+import GenerateOptions from '@/components/generate/options';
+import { cn } from '@/lib/utils';
+import { rubikFont } from '@/styles/fonts';
 
 const GeneratePage = (): JSX.Element => {
-  const { data: session, status } = useAuthenticatedSession();
-
-  React.useEffect(() => {
-    if (status === 'loading') {
-      return;
-    }
-    if (status === 'unauthenticated') {
-      signIn('spotify', { callbackUrl: '/generate' }).catch(() => {
-        toast.error(`Failed to initialize login session`);
-      });
-    }
-  }, [session, status]);
-
   return (
-    <div className="flex justify-center">
-      <div className="mt-4 mx-4 w-full max-w-[1028px] flex flex-col gap-2">
-        {status === 'loading' ? (
-          <>
-            <Skeleton className="w-full h-8" />
-            <Skeleton className="w-full h-48" />
-          </>
-        ) : (
-          <GenerateSteps />
-        )}
+    <div className="flex flex-col gap-2 mt-4">
+      <div
+        className={cn('text-3xl font-bold text-center', rubikFont.className)}
+      >
+        Playlist customizers
+      </div>
+      <div className="max-w-[1024px] px-8">
+        <GenerateOptions className="grid-cols-1" itemClassName="hover:py-4" />
       </div>
     </div>
   );

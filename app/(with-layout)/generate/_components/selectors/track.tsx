@@ -3,10 +3,10 @@
 import React from 'react';
 import { type ItemsSelectorProps, SelectorItem } from '.';
 
-import { MAXSEEDS } from '../stepper';
 import { Track } from '@/types/spotify/track';
 import Image from 'next/image';
 import { Icons } from '@/components/icons';
+import { MAXSEEDS } from '@/config/spotify-api';
 
 const TrackSelector: React.FC<ItemsSelectorProps<Track>> = ({
   options,

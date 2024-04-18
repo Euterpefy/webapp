@@ -49,7 +49,7 @@ const handler = NextAuth({
 
       return session;
     },
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, account, profile }) {
       if (token.account) {
         const now = Date.now();
         const oldTokenAccount = token.account as SessionToken;
@@ -71,7 +71,7 @@ const handler = NextAuth({
       }
       return token;
     },
-    async signIn({ user, account, profile }) {
+    async signIn({ account }) {
       if (account) {
         return true;
       } else {

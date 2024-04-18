@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import {
   CardTitle,
@@ -8,9 +9,7 @@ import {
   CardFooter,
   Card,
 } from '@/components/ui/card';
-
 import { Button } from '@/components/ui/button';
-import { Progress } from '../ui/progress';
 import { useSession } from 'next-auth/react';
 import { Track, TrackArtist } from '@/types/spotify/track';
 import { toast } from 'sonner';
@@ -19,10 +18,9 @@ import GenreSelector from './selectors/genre';
 import ArtistSelector from './selectors/artist';
 import TrackSelector from './selectors/track';
 import GeneratedPlaylist from './playlist';
-import { Icons } from '../icons';
+import { Icons } from '../../../../components/icons';
 import PreferenceSliders from './selectors/preference-sliders';
-
-export const MAXSEEDS = 5;
+import SeedsProgressBar from './seeds-count';
 
 interface Props {
   advanced?: boolean;
@@ -229,7 +227,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
                 totalSeeds={totalSeeds}
               />
             </CardContent>
-            <CardFooter className="flex justify-end gap-2">
+            <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <GenerateButton />
               <NextButton onClick={toStep2} />
             </CardFooter>
@@ -253,7 +251,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
                 totalSeeds={totalSeeds}
               />
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex gap-2 items-center">
                 <PreviousButton />
                 <Button onClick={startOver} variant="outline" size={'sm'}>
@@ -285,7 +283,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
                 totalSeeds={totalSeeds}
               />
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex items-center gap-2">
                 <PreviousButton />
                 <Button onClick={startOver} variant="outline" size={'sm'}>
@@ -314,7 +312,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
                 }}
               />
             </CardContent>
-            <CardFooter className="flex justify-between">
+            <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex items-center gap-2">
                 <PreviousButton />
                 <Button onClick={startOver} variant="outline" size={'sm'}>
@@ -332,14 +330,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
 
   return (
     <>
-      {currentStep > 0 && (
-        <div className="w-full">
-          <p className="w-fit uppercase text-sm font-bold text-info">
-            Selected seeds {totalSeeds}/{MAXSEEDS}
-          </p>
-          <Progress value={(totalSeeds / MAXSEEDS) * 100} />
-        </div>
-      )}
+      {currentStep > 0 && <SeedsProgressBar curSeeds={totalSeeds} />}
       <div className="relative">
         {renderStep()}
         <Icons.spotify className="absolute top-0 right-0" />

@@ -7,7 +7,7 @@ import {
   Card,
 } from '@/components/ui/card';
 import { Track } from '@/types/spotify/track';
-import TrackList from '../spotify/tracklist';
+import TrackList from '../../../../components/spotify/tracklist';
 
 import ImportPlaylistDialog from './import-playlist-dialog';
 
