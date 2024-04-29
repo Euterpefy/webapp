@@ -4,7 +4,7 @@ import { rubikFont } from '@/styles/fonts';
 import { Icons } from '@/components/icons';
 import HomePageAudioWaves from './audio-waves';
 
-const HeroSection = () => {
+const HeroSection = (): JSX.Element => {
   return (
     <section
       className="relative h-[600px] justify-center"

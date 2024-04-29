@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useFetchMoreItems } from '@/hooks/spotify/fetch-more';
 import { useFetchPagination } from '@/hooks/spotify/fetch-pagination';
 import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
-import { Playlist } from '@/types/spotify/playlist';
+import type { Playlist } from '@/types/spotify/playlist';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 

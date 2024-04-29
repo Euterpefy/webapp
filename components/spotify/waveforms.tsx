@@ -22,7 +22,7 @@ const AudioWaveform: React.FC<AudioWaveformProps> = ({
     if (!audioContextRef.current) {
       audioContextRef.current = new window.AudioContext();
     }
-    const fetchAudio = async () => {
+    const fetchAudio = async (): Promise<void> => {
       try {
         const response = await fetch(url);
         const arrayBuffer = await response.arrayBuffer();
@@ -38,10 +38,12 @@ const AudioWaveform: React.FC<AudioWaveformProps> = ({
       }
     };
 
-    fetchAudio();
+    fetchAudio().catch((e) => {});
 
     return () => {
-      audioContextRef.current?.close(); // Clean up AudioContext to avoid memory leaks
+      audioContextRef.current?.close().catch((e) => {
+        // console.log(e);
+      }); // Clean up AudioContext to avoid memory leaks
     };
   }, [url]);
 
@@ -84,7 +86,9 @@ const AudioWaveform: React.FC<AudioWaveformProps> = ({
       setCurrentPage((prevPage) => (prevPage + 1) % barHeights.length);
     }, 500);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
   }, [barHeights.length]);
 
   return (

@@ -1,8 +1,8 @@
 'use client';
 
 import {
-  SearchResult,
-  SearchType,
+  type SearchResult,
+  type SearchType,
   defaultSearchTypes,
 } from '@/types/spotify/search';
 import React from 'react';
@@ -43,7 +43,7 @@ const SpotifySearch: React.FC<Props> = ({
     if (status === 'loading' || searchKey === '') {
       return;
     }
-    if (!session || !session.token || !session.token.access_token) {
+    if (!session?.token?.access_token) {
       toast.error(`Login session not found`);
       return;
     }
@@ -80,8 +80,8 @@ const SpotifySearch: React.FC<Props> = ({
       let timeout: ReturnType<typeof setTimeout> | null = null;
 
       if (loadOnChange) {
-        timeout = setTimeout(async () => {
-          fetchSearchResults().catch(() => {});
+        timeout = setTimeout(() => {
+          fetchSearchResults().catch((e) => {});
         }, 3000);
       }
 
@@ -98,10 +98,10 @@ const SpotifySearch: React.FC<Props> = ({
   const handleSearchButtonClick = async (): Promise<void> => {
     try {
       if (!loadOnChange) {
-        fetchSearchResults();
+        await fetchSearchResults();
       }
     } catch (e) {
-      console.error(e);
+      // console.error(e);
       toast.error(`Search error`);
     }
   };
@@ -123,7 +123,9 @@ const SpotifySearch: React.FC<Props> = ({
           <Button
             className="rounded-lg"
             type="submit"
-            onClick={handleSearchButtonClick}
+            onClick={() => {
+              handleSearchButtonClick().catch((e) => {});
+            }}
           >
             <Search className="w-4 h-4" />
           </Button>

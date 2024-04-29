@@ -18,7 +18,7 @@ const Step: React.FC<StepProps> = ({ label, description, className }) => (
   </div>
 );
 
-const Steps = () => {
+const Steps = (): JSX.Element => {
   return (
     <div className="grid grid-cols-1 gap-8 px-8 py-6 w-full max-w-[1024px]">
       {stepsData.map((step, index) => (

@@ -1,4 +1,4 @@
-import { FAQProps } from './faq';
+import type { FAQProps } from './faq';
 
 // faqs.tsx
 export const faqList: FAQProps[] = [

@@ -11,7 +11,7 @@ import {
   SelectScrollDownButton,
 } from '@/components/ui/select'; // Adjust import paths
 import { addPlaylistItems } from '@/lib/api/spotify/playlist';
-import { Playlist, PlaylistTrack } from '@/types/spotify/playlist';
+import type { Playlist, PlaylistTrack } from '@/types/spotify/playlist';
 import { toast } from 'sonner';
 import { Button } from '../ui/button';
 import { RefreshCcw } from 'lucide-react';
@@ -61,7 +61,7 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
       return;
     }
     try {
-      if (!session || !session.token || !session.user) {
+      if (!session?.token || !session?.user) {
         return;
       }
 
@@ -184,7 +184,7 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
           variant={'success'}
           size={'sm'}
           onClick={() => {
-            addToPlaylist();
+            addToPlaylist().catch((e) => {});
           }}
         >
           Import to Spotify Playlist

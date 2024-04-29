@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Button, ButtonProps } from '../ui/button';
+import { Button, type ButtonProps } from '../ui/button';
 import { signOut } from 'next-auth/react';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';

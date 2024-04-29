@@ -84,16 +84,16 @@ export function DocsSidebarNavItems({
               pathname === `/${language}${item.href}` ? 'bg-muted' : ''
             )}
             target={
-              item.external || item.href.startsWith('https://') ? '_blank' : ''
+              item.external ?? item.href.startsWith('https://') ? '_blank' : ''
             }
             rel={
-              item.external || item.href.startsWith('https://')
+              item.external ?? item.href.startsWith('https://')
                 ? 'noreferrer'
                 : ''
             }
           >
             {item.title}
-            {(item.external || item.href.startsWith('https://')) && (
+            {(item.external ?? item.href.startsWith('https://')) && (
               <ExternalLink size={16} />
             )}
             {item.note === 'new' && (

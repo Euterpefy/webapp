@@ -9,7 +9,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Terminal } from 'lucide-react';
 import { Icons } from '../icons';
 
-const HomePageAlert = () => {
+const HomePageAlert = (): JSX.Element => {
   return (
     <section className="px-4">
       <Alert>

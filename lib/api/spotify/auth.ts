@@ -1,6 +1,6 @@
 // api/spotify/auth.ts
 
-import { SessionToken } from '@/types/next-auth';
+import type { SessionToken } from '@/types/next-auth';
 import axios from 'axios';
 
 const SPOTIFY_CLIENT_ID = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID ?? '';

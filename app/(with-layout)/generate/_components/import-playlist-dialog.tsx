@@ -10,7 +10,7 @@ import {
   ResponsiveModalTrigger,
 } from '@/components/ui/responsive-modal';
 import { Button, buttonVariants } from '../../../../components/ui/button';
-import { NewPlaylist } from '@/types/spotify/playlist';
+import type { NewPlaylist } from '@/types/spotify/playlist';
 import NewPlaylistForm from '../../../../components/forms/create-playlist';
 import { toast } from 'sonner';
 import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
@@ -39,18 +39,19 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
       if (status === 'loading') {
         return;
       }
-      if (!session || !session.token || !session.user) {
+      if (!session?.token || !session?.user) {
         return;
       }
 
       // Create the playlist
       const playlist = await createPlaylist(
         session.token.access_token,
-        session.user.id,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        session.user?.id,
         newPlaylist
       );
 
-      if (!playlist || !playlist.id) {
+      if (!playlist?.id) {
         throw new Error('Failed to create playlist');
       }
 
@@ -65,11 +66,11 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
         setImportOption('');
         toast.success('Playlist created and tracks added successfully!');
       } catch (e) {
-        toast.error(`Failed to add items to playlist: ${e}`);
+        toast.error(`Failed to add items to playlist`);
       }
     } catch (error) {
       // console.error('Error in creating playlist:', error);
-      toast.error(`Failed to create new playlist: ${error ?? 'Unknown error'}`);
+      toast.error(`Failed to create new playlist`);
     }
   };
 

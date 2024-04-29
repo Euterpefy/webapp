@@ -6,7 +6,7 @@ import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
 import { cn } from '@/lib/utils';
 import { poppinsFont } from '@/styles/fonts';
 
-const MoodTunerPage = () => {
+const MoodTunerPage = (): JSX.Element => {
   const { data: session, status } = useAuthenticatedSession();
 
   if (status === 'loading') {

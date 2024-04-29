@@ -3,7 +3,7 @@ import React from 'react';
 import { faqList } from './faqs';
 import FAQ from './faq';
 
-const FAQSection = () => {
+const FAQSection = (): JSX.Element => {
   return (
     <section className="flex flex-col items-center w-full">
       <div className="text-3xl font-bold text-center px-4 py-6 bg-secondary/50 w-full">

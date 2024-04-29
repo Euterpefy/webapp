@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useSession } from 'next-auth/react';
-import { Track, TrackArtist } from '@/types/spotify/track';
+import type { Track, TrackArtist } from '@/types/spotify/track';
 import { toast } from 'sonner';
 import { fetchRecommendations } from '@/lib/api/spotify/recommendations';
 import GenreSelector from './selectors/genre';
@@ -64,7 +64,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
 
   const toStep2 = async (): Promise<void> => {
     try {
-      if (!session || !session.token) {
+      if (!session?.token) {
         return;
       }
       const responseData = await fetchRecommendations(
@@ -91,7 +91,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
 
   const toStep3 = async (): Promise<void> => {
     try {
-      if (!session || !session.token) {
+      if (!session?.token) {
         return;
       }
       const responseData = await fetchRecommendations(
@@ -115,7 +115,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
 
   const generateTracks = async (): Promise<void> => {
     try {
-      if (!session || !session.token) {
+      if (!session?.token) {
         toast.error(`Login session not found.`);
         return;
       }
@@ -132,7 +132,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
       setRecommendedTracks(res.tracks);
       setCurrentStep(0);
     } catch (e) {
-      toast.error(`${e}`);
+      // toast.error(`${e}`);
     }
   };
 
@@ -153,17 +153,19 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
     <Button
       onClick={() => {
         if (onClick) {
-          onClick().then(() => {
-            if (advanced) {
-              if (totalSeeds === 5) {
-                setCurrentStep(4);
+          onClick()
+            .then(() => {
+              if (advanced) {
+                if (totalSeeds === 5) {
+                  setCurrentStep(4);
+                } else {
+                  setCurrentStep((prev) => prev + 1);
+                }
               } else {
-                setCurrentStep((prev) => prev + 1);
+                handleNext();
               }
-            } else {
-              handleNext();
-            }
-          });
+            })
+            .catch(() => {});
         } else {
           handleNext();
         }
@@ -181,7 +183,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
       disabled={totalSeeds === 0}
       size={'sm'}
       onClick={() => {
-        generateTracks();
+        generateTracks().catch(() => {});
       }}
       className="gap-2"
     >
@@ -196,7 +198,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
     </Button>
   );
 
-  const renderStep = () => {
+  const renderStep = (): JSX.Element => {
     switch (currentStep) {
       case 0:
         return (

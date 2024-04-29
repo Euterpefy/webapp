@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CoverImage: React.FC<Props> = ({ images, size }) => {
-  const getContainerSize = () => {
+  const getContainerSize = (): string => {
     switch (size) {
       case 'sm':
         return 'h-8 w-8';
@@ -20,7 +20,7 @@ const CoverImage: React.FC<Props> = ({ images, size }) => {
     }
   };
 
-  const getImageSize = () => {
+  const getImageSize = (): { height: number; width: number } => {
     switch (size) {
       case 'sm':
         return { height: 25, width: 25 };

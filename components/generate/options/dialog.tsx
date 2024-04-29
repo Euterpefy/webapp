@@ -11,7 +11,7 @@ import {
   ResponsiveModalTitle,
   ResponsiveModalTrigger,
 } from '@/components/ui/responsive-modal';
-import { ButtonProps, buttonVariants } from '@/components/ui/button';
+import { type ButtonProps, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 import GenerateOptions from '.';

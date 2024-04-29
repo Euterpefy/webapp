@@ -60,9 +60,9 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
           <Label className="capitalize flex items-center justify-between">
             <span className="text-warning">Popularity:</span>
             <span>
-              {preferences['min_popularity'] ?? 50}{' '}
+              {preferences.min_popularity ?? 50}{' '}
               <span className="text-foreground/70">-</span>{' '}
-              {preferences['max_popularity'] ?? 100}
+              {preferences.max_popularity ?? 100}
             </span>
           </Label>
           <RangeSlider
@@ -77,8 +77,8 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
             onValueChange={(value) => {
               setPreferences((prev) => ({
                 ...prev,
-                ['min_popularity']: value[0],
-                ['max_popularity']: value[1],
+                min_popularity: value[0],
+                max_popularity: value[1],
               }));
             }}
           />

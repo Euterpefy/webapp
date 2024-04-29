@@ -5,7 +5,7 @@ import LogoutButton from './logout-button';
 import LoginButton from './login-button';
 import { Skeleton } from '../ui/skeleton';
 
-const AuthButton = () => {
+const AuthButton = (): JSX.Element => {
   const { data: session, status } = useSession();
   return (
     <>

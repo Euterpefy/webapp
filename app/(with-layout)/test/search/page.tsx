@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 
 import SearchResultsDisplay from '@/components/spotify/display-results';
 
-const SearchPage = () => {
+const SearchPage = (): JSX.Element => {
   const [results, setResults] = React.useState<SearchResult | null>(null);
 
   const resultsRef = React.useRef<SearchResult | null>(null);
@@ -27,10 +27,10 @@ const SearchPage = () => {
   // eslint-disable-next-line jsdoc/require-jsdoc
   function hasResults(): boolean {
     return (
-      ((results?.albums && results.albums.items.length > 0) ||
-        (results?.artists && results.artists.items.length > 0) ||
-        (results?.tracks && results.tracks.items.length > 0) ||
-        (results?.playlists && results.playlists.items.length > 0)) ??
+      (results?.albums && results.albums.items.length > 0) ??
+      (results?.artists && results.artists.items.length > 0) ??
+      (results?.tracks && results.tracks.items.length > 0) ??
+      (results?.playlists && results.playlists.items.length > 0) ??
       false
     );
   }

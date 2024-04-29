@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-import { NavMenu, type MainNavItem, NavItem } from '@/types';
+import type { NavMenu, MainNavItem, NavItem } from '@/types';
 
 import { Icons } from '@/components/icons';
 import { MobileNav } from '@/components/nav/mobile';
@@ -25,7 +25,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
 import AuthButton from '../auth/auth-button';
-import { AdditionalProps } from '..';
+import type { AdditionalProps } from '..';
 
 interface MainNavProps {
   items?: MainNavItem[];
@@ -252,8 +252,12 @@ const NavMenuListItem: React.FC<{
               key={component.title}
               title={component.title}
               href={component.href}
-              onMouseEnter={() => setActiveItem(component)}
-              onMouseLeave={() => setActiveItem(null)}
+              onMouseEnter={() => {
+                setActiveItem(component);
+              }}
+              onMouseLeave={() => {
+                setActiveItem(null);
+              }}
             >
               {component.description}
             </ListItem>

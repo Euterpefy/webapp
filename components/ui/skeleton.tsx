@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
-import { AdditionalProps } from '..';
+import type { AdditionalProps } from '..';
 
 /**
  * Renders a skeleton loader element with customizable classes.

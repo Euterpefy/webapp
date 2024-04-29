@@ -2,7 +2,7 @@
 import { signIn, useSession } from 'next-auth/react';
 import React from 'react';
 
-const SpotifySigninPage = () => {
+const SpotifySigninPage = (): JSX.Element => {
   const { data: session, status } = useSession();
 
   React.useEffect(() => {

@@ -3,7 +3,7 @@ import { Input } from '../ui/input'; // Adjust import paths as necessary
 import { Textarea } from '../ui/textarea';
 import { Switch } from '../ui/switch';
 import { Button } from '../ui/button';
-import { NewPlaylist } from '@/types/spotify/playlist';
+import type { NewPlaylist } from '@/types/spotify/playlist';
 import { Label } from '../ui/label';
 
 interface NewPlaylistFormProps {
@@ -22,16 +22,16 @@ const NewPlaylistForm: React.FC<NewPlaylistFormProps> = ({
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  ): void => {
     const { name, value } = e.target;
     setPlaylist({ ...playlist, [name]: value });
   };
 
-  const handleSwitchChange = (name: keyof NewPlaylist) => {
+  const handleSwitchChange = (name: keyof NewPlaylist): void => {
     setPlaylist({ ...playlist, [name]: !playlist[name] });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault();
     onSave(playlist);
   };
@@ -61,7 +61,9 @@ const NewPlaylistForm: React.FC<NewPlaylistFormProps> = ({
         <Label>Public</Label>
         <Switch
           checked={playlist.public}
-          onClick={() => handleSwitchChange('public')}
+          onClick={() => {
+            handleSwitchChange('public');
+          }}
           size="xs"
         />
       </div>
@@ -69,7 +71,9 @@ const NewPlaylistForm: React.FC<NewPlaylistFormProps> = ({
         <Label>Collaborative</Label>
         <Switch
           checked={playlist.collaborative}
-          onClick={() => handleSwitchChange('collaborative')}
+          onClick={() => {
+            handleSwitchChange('collaborative');
+          }}
           size="xs"
         />
       </div>

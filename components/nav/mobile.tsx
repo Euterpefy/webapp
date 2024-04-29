@@ -68,18 +68,18 @@ export function MobileNav({
                     />
                   </CollapsibleTrigger>
                   <CollapsibleContent>
-                    {item.items.map((nav_item, i) => {
+                    {item.items.map((navItem, i) => {
                       return (
                         <Link
                           key={i}
                           onClick={onClose}
-                          href={nav_item.disabled ? '#' : nav_item.href}
+                          href={navItem.disabled ? '#' : navItem.href}
                           className={cn(
                             'flex w-full items-center rounded-md py-2 px-6 text-sm font-medium hover:underline',
-                            nav_item.disabled && 'cursor-not-allowed opacity-60'
+                            navItem.disabled && 'cursor-not-allowed opacity-60'
                           )}
                         >
-                          {nav_item.title}
+                          {navItem.title}
                         </Link>
                       );
                     })}

@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useSession } from 'next-auth/react';
-import { Track, TrackArtist } from '@/types/spotify/track';
 import { toast } from 'sonner';
 import { fetchRecommendations } from '@/lib/api/spotify/recommendations';
 import { Icons } from '@/components/icons';
@@ -21,7 +20,8 @@ import TrackSelector from '../../_components/selectors/track';
 import PreferenceSliders from '../../_components/selectors/preference-sliders';
 import SeedsProgressBar from '../../_components/seeds-count';
 import GenreSelector from '../../_components/selectors/genre';
-import { Artist } from '@/types/spotify/artist';
+import type { Track, TrackArtist } from '@/types/spotify/track';
+import type { Artist } from '@/types/spotify/artist';
 import { fetchUserTopItemsPages } from '@/lib/api/spotify/user-top-items';
 import { MAXSEEDS } from '@/config/spotify-api';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -40,7 +40,7 @@ const FavMixerStepper = (): JSX.Element => {
   const [topArtists, setTopArtists] = React.useState<Artist[]>([]);
 
   React.useEffect(() => {
-    if (session && session.token) {
+    if (session?.token) {
       fetchUserTopItemsPages<Artist>(
         session.token.access_token,
         'artists',
@@ -48,12 +48,18 @@ const FavMixerStepper = (): JSX.Element => {
         50,
         0,
         2
-      ).then((responseData) => {
-        setGenreOptions(
-          Array.from(new Set([...responseData.flatMap((item) => item.genres)]))
-        );
-        setTopArtists(responseData);
-      });
+      )
+        .then((responseData) => {
+          setGenreOptions(
+            Array.from(
+              new Set([...responseData.flatMap((item) => item.genres)])
+            )
+          );
+          setTopArtists(responseData);
+        })
+        .catch((e) => {
+          // handle error fetching user's top items
+        });
     }
   }, [session]);
 
@@ -89,7 +95,7 @@ const FavMixerStepper = (): JSX.Element => {
 
   const toStep2 = async (): Promise<void> => {
     try {
-      if (!session || !session.token) {
+      if (!session?.token) {
         return;
       }
 
@@ -132,7 +138,7 @@ const FavMixerStepper = (): JSX.Element => {
 
   const toStep3 = async (): Promise<void> => {
     try {
-      if (!session || !session.token) {
+      if (!session?.token) {
         return;
       }
       const responseData = await fetchRecommendations(
@@ -156,7 +162,7 @@ const FavMixerStepper = (): JSX.Element => {
 
   const generateTracks = async (): Promise<void> => {
     try {
-      if (!session || !session.token) {
+      if (!session?.token) {
         toast.error(`Login session not found.`);
         return;
       }
@@ -173,7 +179,7 @@ const FavMixerStepper = (): JSX.Element => {
       setRecommendedTracks(res.tracks);
       setCurrentStep(0);
     } catch (e) {
-      toast.error(`${e}`);
+      // toast.error(`${e}`);
     }
   };
 
@@ -194,9 +200,11 @@ const FavMixerStepper = (): JSX.Element => {
     <Button
       onClick={() => {
         if (onClick) {
-          onClick().then(() => {
-            handleNext();
-          });
+          onClick()
+            .then(() => {
+              handleNext();
+            })
+            .catch((e) => {});
         } else {
           handleNext();
         }
@@ -218,7 +226,7 @@ const FavMixerStepper = (): JSX.Element => {
       }
       size={'sm'}
       onClick={() => {
-        generateTracks();
+        generateTracks().catch((e) => {});
       }}
       className="gap-2"
     >
@@ -233,7 +241,7 @@ const FavMixerStepper = (): JSX.Element => {
     </Button>
   );
 
-  const renderStep = () => {
+  const renderStep = (): JSX.Element => {
     switch (currentStep) {
       case 0:
         return (

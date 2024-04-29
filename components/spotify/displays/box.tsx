@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { PagedResponse } from '@/types/spotify/pagination';
+import type { PagedResponse } from '@/types/spotify/pagination';
 
 interface DisplayBoxProps {
   children: React.ReactNode;

@@ -1,8 +1,12 @@
 // api/spotify/playlist.ts
 
 import { spotifyInstance } from '@/config/spotify-api';
-import { PagedResponse } from '@/types/spotify/pagination';
-import { NewPlaylist, Playlist, PlaylistTrack } from '@/types/spotify/playlist';
+import type { PagedResponse } from '@/types/spotify/pagination';
+import type {
+  NewPlaylist,
+  Playlist,
+  PlaylistTrack,
+} from '@/types/spotify/playlist';
 import { HttpStatusCode } from 'axios';
 
 const fetchUserPlaylists = async (

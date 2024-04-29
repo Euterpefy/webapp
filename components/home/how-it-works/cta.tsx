@@ -1,7 +1,7 @@
 import React from 'react';
 import OptionsDialogButton from '@/components/generate/options/dialog';
 
-const CallToAction = () => {
+const CallToAction = (): JSX.Element => {
   return (
     <OptionsDialogButton variant={'outline'}>
       Start customizing

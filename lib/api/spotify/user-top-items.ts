@@ -1,7 +1,7 @@
 // api/spotify/user-top-items.ts
 
 import { spotifyInstance } from '@/config/spotify-api';
-import { PagedResponse } from '@/types/spotify/pagination'; // Ensure you have defined these types
+import type { PagedResponse } from '@/types/spotify/pagination'; // Ensure you have defined these types
 import { fetchPagedItems } from './fetch-pages';
 
 type TimeRange = 'long_term' | 'medium_term' | 'short_term';
@@ -50,7 +50,7 @@ const fetchUserTopItemsPages = async <T>(
   limit: number = 20,
   offset: number = 0,
   pages: number = 1
-): Promise<Array<T>> => {
+): Promise<T[]> => {
   const url = `/me/top/${type}`;
   const params = { time_range: timeRange, limit, offset };
   return await fetchPagedItems<T>(accessToken, url, pages, params);

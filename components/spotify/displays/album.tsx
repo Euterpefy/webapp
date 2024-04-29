@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Album } from '@/types/spotify/album';
+import type { Album } from '@/types/spotify/album';
 import { DisplayFooter, DisplayName } from '.';
 
 const DisplayAlbum: React.FC<{ album: Album }> = ({ album }) => {

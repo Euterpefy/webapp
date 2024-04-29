@@ -9,7 +9,7 @@ export interface SeedSelectorProps {
 }
 
 export interface ItemsSelectorProps<T> {
-  options: Array<T>;
+  options: T[];
   selected: string[];
   setSelected: React.Dispatch<React.SetStateAction<string[]>>;
   totalSeeds: number;

@@ -3,11 +3,11 @@
 import { Icons } from '@/components/icons';
 import AudioWaveform from '@/components/spotify/waveforms';
 import { fetchUserTopItems } from '@/lib/api/spotify/user-top-items';
-import { Track } from '@/types/spotify/track';
+import type { Track } from '@/types/spotify/track';
 import { useSession } from 'next-auth/react';
 import React from 'react';
 
-const HomePageAudioWaves = () => {
+const HomePageAudioWaves = (): JSX.Element => {
   const [audioUrl, setAudioUrl] = React.useState(
     'https://p.scdn.co/mp3-preview/f6f9512f66f19e8244b7ee26908a87c41b2a80ab?cid=cfe923b2d660439caf2b557b21f31221'
   );
@@ -15,7 +15,7 @@ const HomePageAudioWaves = () => {
 
   const { data: session, status } = useSession();
   React.useEffect(() => {
-    if (status === 'authenticated' && session && session.token) {
+    if (status === 'authenticated' && session?.token) {
       fetchUserTopItems<Track>(
         session.token.access_token ?? '',
         'tracks',
@@ -27,12 +27,12 @@ const HomePageAudioWaves = () => {
           );
           setUserTopTrack(trackWithPreview ?? null);
         })
-        .catch();
+        .catch(() => {});
     }
   }, [session, status]);
 
   React.useEffect(() => {
-    if (userTopTrack && userTopTrack.preview_url) {
+    if (userTopTrack?.preview_url) {
       setAudioUrl(userTopTrack.preview_url);
     }
   }, [userTopTrack]);

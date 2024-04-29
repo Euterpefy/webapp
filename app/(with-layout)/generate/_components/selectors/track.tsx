@@ -3,7 +3,7 @@
 import React from 'react';
 import { type ItemsSelectorProps, SelectorItem } from '.';
 
-import { Track } from '@/types/spotify/track';
+import type { Track } from '@/types/spotify/track';
 import Image from 'next/image';
 import { Icons } from '@/components/icons';
 import { MAXSEEDS } from '@/config/spotify-api';
@@ -13,7 +13,7 @@ const TrackSelector: React.FC<ItemsSelectorProps<Track>> = ({
   selected,
   setSelected,
   totalSeeds,
-}) => {
+}): JSX.Element => {
   return (
     <div className="flex flex-wrap gap-2 items-center max-h-[60vh] overflow-y-auto">
       {options.map((option, index) => (

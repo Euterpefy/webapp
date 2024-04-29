@@ -1,5 +1,5 @@
 import React from 'react';
-import { Artist } from '@/types/spotify/artist';
+import type { Artist } from '@/types/spotify/artist';
 import Image from 'next/image';
 import { DisplayFooter, DisplayName } from '.';
 

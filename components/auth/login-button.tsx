@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { signIn } from 'next-auth/react';
-import { Button, ButtonProps } from '../ui/button';
+import { Button, type ButtonProps } from '../ui/button';
 import AnimatedButton from '../motions/animated-button';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';

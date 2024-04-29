@@ -24,7 +24,7 @@ import {
 import { useMediaQuery } from '@/hooks/use-media-query';
 
 import { cn } from '@/lib/utils';
-import { ButtonProps } from './button';
+import type { ButtonProps } from './button';
 
 interface BaseProps {
   children: React.ReactNode;

@@ -1,4 +1,4 @@
-import { LucideProps } from 'lucide-react';
+import type { LucideProps } from 'lucide-react';
 import React from 'react';
 
 const SiteLogo: React.FC<LucideProps> = (props): React.JSX.Element => {

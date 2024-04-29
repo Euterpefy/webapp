@@ -4,7 +4,7 @@ import React from 'react';
 import GenerateSteps from '@/app/(with-layout)/generate/_components/stepper';
 import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
 
-const AdvancedGeneratingPage = () => {
+const AdvancedGeneratingPage = (): JSX.Element => {
   const { data: session, status } = useAuthenticatedSession();
 
   if (status === 'loading') {

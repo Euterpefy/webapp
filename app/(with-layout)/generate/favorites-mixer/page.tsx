@@ -6,7 +6,7 @@ import FavMixerStepper from '@/app/(with-layout)/generate/favorites-mixer/_compo
 import { cn } from '@/lib/utils';
 import { poppinsFont } from '@/styles/fonts';
 
-const FavMixerPage = () => {
+const FavMixerPage = (): JSX.Element => {
   const { data: session, status } = useAuthenticatedSession();
 
   if (status === 'loading') {

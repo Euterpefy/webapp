@@ -1,4 +1,4 @@
-import { Track } from '@/types/spotify/track';
+import type { Track } from '@/types/spotify/track';
 import React from 'react';
 import { Icons } from '../icons';
 import { toast } from 'sonner';
@@ -55,9 +55,10 @@ const TrackList: React.FC<Props> = ({
         description: 'Preview content from Spotify',
       });
       currentAudio.src = currentAudioUrl;
-      currentAudio
-        .play()
-        .catch((error) => console.error('Error playing the track:', error));
+      currentAudio.play().catch(() => {
+        // console.error('Error playing the track:', error);
+        toast.error('Error playing preview for the track');
+      });
       // Set currentAudioUrl to null when the audio has finished playing
       currentAudio.addEventListener('ended', () => {
         setCurrentAudioUrl(null);
@@ -70,7 +71,7 @@ const TrackList: React.FC<Props> = ({
     };
   }, [currentAudioUrl]);
 
-  const handleTrackClick = (previewUrl: string | undefined) => {
+  const handleTrackClick = (previewUrl: string | undefined): void => {
     if (audioPlayer.current.src) {
       audioPlayer.current.pause();
     }
@@ -91,7 +92,9 @@ const TrackList: React.FC<Props> = ({
         <div
           key={track.id}
           className="rounded-lg p-2 flex items-center justify-between hover:bg-secondary/80 cursor-pointer transition-colors ease-in-out relative"
-          onClick={() => handleTrackClick(track.preview_url)}
+          onClick={() => {
+            handleTrackClick(track.preview_url);
+          }}
         >
           {/* Track details */}
           <div className="flex items-center gap-2">

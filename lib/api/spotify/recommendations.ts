@@ -1,7 +1,7 @@
 // api/spotify/recommendations.ts
 
 import { spotifyInstance } from '@/config/spotify-api';
-import {
+import type {
   SpotifyRecommendationParameters,
   SpotifyRecommendationResponse,
 } from '@/types/spotify/recommendations';
@@ -35,6 +35,7 @@ export const fetchRecommendations = async (
       if (Array.isArray(value)) {
         queryParams.set(key, value.join(','));
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         queryParams.set(key, value.toString());
       }
     }
