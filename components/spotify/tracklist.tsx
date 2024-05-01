@@ -1,11 +1,11 @@
-import type { Track } from '@/types/spotify/track';
-import React from 'react';
-import { Icons } from '../icons';
-import { toast } from 'sonner';
-import { Pause, Play } from 'lucide-react';
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
-import useOnScreen from '@/hooks/use-on-screen';
+import type { Track } from "@/types/spotify/track";
+import React from "react";
+import { Icons } from "../icons";
+import { toast } from "sonner";
+import { Pause, Play } from "lucide-react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import useOnScreen from "@/hooks/use-on-screen";
 
 interface Props {
   tracks: Track[];
@@ -19,7 +19,7 @@ const TrackList: React.FC<Props> = ({
   hideIndex = false,
 }) => {
   const [currentAudioUrl, setCurrentAudioUrl] = React.useState<string | null>(
-    null
+    null,
   );
   const audioPlayer = React.useRef(new Audio());
   const [visibleTracks, setVisibleTracks] = React.useState<Track[]>([]);
@@ -41,7 +41,7 @@ const TrackList: React.FC<Props> = ({
     if (loadMore && visibleTracks.length < tracks.length) {
       const nextTracks = tracks.slice(
         visibleTracks.length,
-        visibleTracks.length + 10
+        visibleTracks.length + 10,
       );
       setVisibleTracks((prevTracks) => [...prevTracks, ...nextTracks]);
       setLoadMore(false); // Reset trigger
@@ -51,16 +51,16 @@ const TrackList: React.FC<Props> = ({
   React.useEffect(() => {
     const currentAudio = audioPlayer.current; // Capture the current value at the time of effect execution
     if (currentAudioUrl) {
-      toast.success('Playing track preview...', {
-        description: 'Preview content from Spotify',
+      toast.success("Playing track preview...", {
+        description: "Preview content from Spotify",
       });
       currentAudio.src = currentAudioUrl;
       currentAudio.play().catch(() => {
         // console.error('Error playing the track:', error);
-        toast.error('Error playing preview for the track');
+        toast.error("Error playing preview for the track");
       });
       // Set currentAudioUrl to null when the audio has finished playing
-      currentAudio.addEventListener('ended', () => {
+      currentAudio.addEventListener("ended", () => {
         setCurrentAudioUrl(null);
       });
     }
@@ -113,7 +113,7 @@ const TrackList: React.FC<Props> = ({
             <div className="flex flex-col">
               <div className="font-medium">{track.name}</div>
               <div className="text-foreground/80 text-xs">
-                {track.artists.map((a) => a.name).join(', ')}
+                {track.artists.map((a) => a.name).join(", ")}
               </div>
             </div>
           </div>
@@ -129,9 +129,9 @@ const TrackList: React.FC<Props> = ({
                 <Play
                   size={24}
                   className={cn(
-                    'p-1 rounded-md',
+                    "p-1 rounded-md",
                     !track.preview_url &&
-                      'text-foreground/40 cursor-not-allowed'
+                      "text-foreground/40 cursor-not-allowed",
                   )}
                 />
               )}

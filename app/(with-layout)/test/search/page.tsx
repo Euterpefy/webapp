@@ -1,11 +1,11 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
-import type { SearchResult } from '@/types/spotify/search';
-import SpotifySearch from '@/components/spotify/search';
-import { Label } from '@/components/ui/label';
+import type { SearchResult } from "@/types/spotify/search";
+import SpotifySearch from "@/components/spotify/search";
+import { Label } from "@/components/ui/label";
 
-import SearchResultsDisplay from '@/components/spotify/display-results';
+import SearchResultsDisplay from "@/components/spotify/display-results";
 
 const SearchPage = (): JSX.Element => {
   const [results, setResults] = React.useState<SearchResult | null>(null);

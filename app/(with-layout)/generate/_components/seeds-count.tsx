@@ -1,6 +1,6 @@
-import { MAXSEEDS } from '@/config/spotify-api';
-import React from 'react';
-import { Progress } from '@/components/ui/progress';
+import { MAXSEEDS } from "@/config/spotify-api";
+import React from "react";
+import { Progress } from "@/components/ui/progress";
 
 interface Props {
   curSeeds: number;

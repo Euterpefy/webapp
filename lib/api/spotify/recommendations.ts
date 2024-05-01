@@ -1,19 +1,19 @@
 // api/spotify/recommendations.ts
 
-import { spotifyInstance } from '@/config/spotify-api';
+import { spotifyInstance } from "@/config/spotify-api";
 import type {
   SpotifyRecommendationParameters,
   SpotifyRecommendationResponse,
-} from '@/types/spotify/recommendations';
+} from "@/types/spotify/recommendations";
 
 export const fetchRecommendations = async (
   token: string,
-  params: SpotifyRecommendationParameters
+  params: SpotifyRecommendationParameters,
 ): Promise<SpotifyRecommendationResponse> => {
   const seedKeys: Array<keyof SpotifyRecommendationParameters> = [
-    'seed_artists',
-    'seed_genres',
-    'seed_tracks',
+    "seed_artists",
+    "seed_genres",
+    "seed_tracks",
   ];
   const seedValues: string[] = seedKeys.reduce((acc: string[], key) => {
     const value = params[key];
@@ -25,7 +25,7 @@ export const fetchRecommendations = async (
   }, []);
 
   if (seedValues.length === 0 || seedValues.length > 5) {
-    throw new Error('The number of seeds must be between 1 and 5.');
+    throw new Error("The number of seeds must be between 1 and 5.");
   }
 
   const queryParams = new URLSearchParams();
@@ -33,7 +33,7 @@ export const fetchRecommendations = async (
   for (const [key, value] of Object.entries(params)) {
     if (value !== undefined) {
       if (Array.isArray(value)) {
-        queryParams.set(key, value.join(','));
+        queryParams.set(key, value.join(","));
       } else {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         queryParams.set(key, value.toString());
@@ -42,12 +42,12 @@ export const fetchRecommendations = async (
   }
   console.log(params);
   try {
-    const response = await spotifyInstance(token).get('/recommendations', {
+    const response = await spotifyInstance(token).get("/recommendations", {
       params: queryParams,
     });
     return response.data;
   } catch (error) {
-    console.error('Failed to fetch recommendations:', error);
-    throw new Error('Failed to fetch Spotify recommendations');
+    console.error("Failed to fetch recommendations:", error);
+    throw new Error("Failed to fetch Spotify recommendations");
   }
 };

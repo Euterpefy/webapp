@@ -1,7 +1,7 @@
-import { Footer } from '@/components/footer';
-import { MainNav } from '@/components/nav/main';
-import { mainNavItems } from '@/config/site';
-import React from 'react';
+import { Footer } from "@/components/footer";
+import { MainNav } from "@/components/nav/main";
+import { mainNavItems } from "@/config/site";
+import React from "react";
 
 /**
  * Layout component that wraps the entire application.

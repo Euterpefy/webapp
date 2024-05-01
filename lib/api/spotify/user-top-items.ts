@@ -1,18 +1,18 @@
 // api/spotify/user-top-items.ts
 
-import { spotifyInstance } from '@/config/spotify-api';
-import type { PagedResponse } from '@/types/spotify/pagination'; // Ensure you have defined these types
-import { fetchPagedItems } from './fetch-pages';
+import { spotifyInstance } from "@/config/spotify-api";
+import type { PagedResponse } from "@/types/spotify/pagination"; // Ensure you have defined these types
+import { fetchPagedItems } from "./fetch-pages";
 
-type TimeRange = 'long_term' | 'medium_term' | 'short_term';
-type ItemType = 'artists' | 'tracks';
+type TimeRange = "long_term" | "medium_term" | "short_term";
+type ItemType = "artists" | "tracks";
 
 const fetchUserTopItems = async <T>(
   accessToken: string,
   type: ItemType,
-  timeRange: TimeRange = 'medium_term',
+  timeRange: TimeRange = "medium_term",
   limit: number = 20,
-  offset: number = 0
+  offset: number = 0,
 ): Promise<PagedResponse<T>> => {
   try {
     const response = await spotifyInstance(accessToken).get<PagedResponse<T>>(
@@ -23,13 +23,13 @@ const fetchUserTopItems = async <T>(
           limit,
           offset,
         },
-      }
+      },
     );
 
     return response.data;
   } catch (e) {
     console.error(e);
-    throw Error('Failed to fetch user top items');
+    throw Error("Failed to fetch user top items");
   }
 };
 
@@ -46,10 +46,10 @@ const fetchUserTopItems = async <T>(
 const fetchUserTopItemsPages = async <T>(
   accessToken: string,
   type: ItemType,
-  timeRange: TimeRange = 'medium_term',
+  timeRange: TimeRange = "medium_term",
   limit: number = 20,
   offset: number = 0,
-  pages: number = 1
+  pages: number = 1,
 ): Promise<T[]> => {
   const url = `/me/top/${type}`;
   const params = { time_range: timeRange, limit, offset };

@@ -1,6 +1,6 @@
-import { SpotifyImage } from 'next-auth/providers/spotify';
-import { ExternalUrls, SpotifyRestrictions } from '.';
-import { SimplifiedArtist } from './artist';
+import { type SpotifyImage } from "next-auth/providers/spotify";
+import { type ExternalUrls, type SpotifyRestrictions } from ".";
+import { type SimplifiedArtist } from "./artist";
 
 export interface Album {
   album_type: string;

@@ -1,8 +1,6 @@
-import { DefaultSession } from 'next-auth';
-import 'next-auth';
-import { User } from './spotify';
+import { type User } from "./spotify";
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session {
     token?: SessionToken;
     user?: User;

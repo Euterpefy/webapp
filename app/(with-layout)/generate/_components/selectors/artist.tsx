@@ -1,10 +1,10 @@
 // components/generate/selectors/item-selector.tsx
 
-import React from 'react';
-import { type ItemsSelectorProps, SelectorItem } from '.';
+import React from "react";
+import { type ItemsSelectorProps, SelectorItem } from ".";
 
-import type { TrackArtist } from '@/types/spotify/track';
-import { MAXSEEDS } from '@/config/spotify-api';
+import type { TrackArtist } from "@/types/spotify/track";
+import { MAXSEEDS } from "@/config/spotify-api";
 
 const ArtistSelector: React.FC<ItemsSelectorProps<TrackArtist>> = ({
   options,

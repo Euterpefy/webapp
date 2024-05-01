@@ -1,14 +1,14 @@
-'use client';
-import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
-import CoverImage from '@/components/spotify/cover-image';
-import { Button } from '@/components/ui/button';
-import { useFetchMoreItems } from '@/hooks/spotify/fetch-more';
-import { useFetchPagination } from '@/hooks/spotify/fetch-pagination';
-import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
-import type { Playlist } from '@/types/spotify/playlist';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
+"use client";
+import React, { useState } from "react";
+import { useSession } from "next-auth/react";
+import CoverImage from "@/components/spotify/cover-image";
+import { Button } from "@/components/ui/button";
+import { useFetchMoreItems } from "@/hooks/spotify/fetch-more";
+import { useFetchPagination } from "@/hooks/spotify/fetch-pagination";
+import { useAuthenticatedSession } from "@/hooks/use-authenticated-session";
+import type { Playlist } from "@/types/spotify/playlist";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 
 interface PlaylistProps {
   playlists: Playlist[];
@@ -19,7 +19,7 @@ const TEST_LIMIT = 2;
 
 const TestPage: React.FC = () => {
   const { status } = useSession();
-  const [fetchMethod, setFetchMethod] = useState<string>('option-one'); // Use string type for fetchMethod
+  const [fetchMethod, setFetchMethod] = useState<string>("option-one"); // Use string type for fetchMethod
 
   return (
     <div className="flex justify-center">
@@ -41,8 +41,8 @@ const TestPage: React.FC = () => {
           </RadioGroup>
         </div>
         <div className="flex flex-col gap-2">
-          {status === 'authenticated' &&
-            (fetchMethod === 'option-one' ? (
+          {status === "authenticated" &&
+            (fetchMethod === "option-one" ? (
               <PlaylistsLoadMore />
             ) : (
               <PlaylistsPaginated />
@@ -63,17 +63,17 @@ const PlaylistsLoadMore: React.FC = () => {
     fetchMore,
     isLoading,
   } = useFetchMoreItems<Playlist>(
-    session?.token?.access_token ?? '',
+    session?.token?.access_token ?? "",
     `/users/${session?.user?.id}/playlists`,
-    TEST_LIMIT
+    TEST_LIMIT,
   );
 
   return (
     <>
       <div className="font-bold text-info">Use Load More</div>
       <Button
-        size={'sm'}
-        variant={'success'}
+        size={"sm"}
+        variant={"success"}
         disabled={!hasMore}
         onClick={() => {
           fetchMore();
@@ -100,9 +100,9 @@ const PlaylistsPaginated: React.FC = () => {
     totalPages,
     setPage,
   } = useFetchPagination<Playlist>(
-    session?.token?.access_token ?? '',
+    session?.token?.access_token ?? "",
     `/users/${session?.user?.id}/playlists`,
-    TEST_LIMIT
+    TEST_LIMIT,
   );
 
   return (
@@ -110,7 +110,7 @@ const PlaylistsPaginated: React.FC = () => {
       <div className="font-bold text-info">Use Pagination</div>
       <div className="flex items-center gap-4">
         <Button
-          size={'sm'}
+          size={"sm"}
           disabled={!hasPrev}
           onClick={() => {
             setPage(currentPage - 1);
@@ -122,7 +122,7 @@ const PlaylistsPaginated: React.FC = () => {
           {currentPage}/{totalPages}
         </div>
         <Button
-          size={'sm'}
+          size={"sm"}
           disabled={!hasNext}
           onClick={() => {
             setPage(currentPage + 1);
@@ -148,13 +148,13 @@ const renderPlaylists: React.FC<PlaylistProps> = ({ playlists }) => (
           images={
             playlist.images
               ? [playlist.images[0].url]
-              : ['/spotify/default-cover.jpg']
+              : ["/spotify/default-cover.jpg"]
           }
         />
         <div className="text-foreground">
           {playlist.name}
           <p className="text-xs text-foreground/50">
-            {playlist.public ? 'Public' : 'Private'} • {playlist.tracks.total}{' '}
+            {playlist.public ? "Public" : "Private"} • {playlist.tracks.total}{" "}
             tracks
           </p>
         </div>

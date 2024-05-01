@@ -1,12 +1,12 @@
 // components/generate/selectors/item-selector.tsx
 
-import React from 'react';
-import { type ItemsSelectorProps, SelectorItem } from '.';
+import React from "react";
+import { type ItemsSelectorProps, SelectorItem } from ".";
 
-import type { Track } from '@/types/spotify/track';
-import Image from 'next/image';
-import { Icons } from '@/components/icons';
-import { MAXSEEDS } from '@/config/spotify-api';
+import type { Track } from "@/types/spotify/track";
+import Image from "next/image";
+import { Icons } from "@/components/icons";
+import { MAXSEEDS } from "@/config/spotify-api";
 
 const TrackSelector: React.FC<ItemsSelectorProps<Track>> = ({
   options,
@@ -46,7 +46,7 @@ const TrackSelector: React.FC<ItemsSelectorProps<Track>> = ({
                 {option.name}
               </div>
               <div className="text-xs truncate text-ellipsis">
-                {option.artists.map((a) => a.name).join(', ')}
+                {option.artists.map((a) => a.name).join(", ")}
               </div>
             </div>
           </div>

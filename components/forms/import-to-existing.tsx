@@ -1,6 +1,6 @@
-'use client';
-import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
-import React from 'react';
+"use client";
+import { useAuthenticatedSession } from "@/hooks/use-authenticated-session";
+import React from "react";
 import {
   Select,
   SelectTrigger,
@@ -9,17 +9,17 @@ import {
   SelectItem,
   SelectScrollUpButton,
   SelectScrollDownButton,
-} from '@/components/ui/select'; // Adjust import paths
-import { addPlaylistItems } from '@/lib/api/spotify/playlist';
-import type { Playlist, PlaylistTrack } from '@/types/spotify/playlist';
-import { toast } from 'sonner';
-import { Button } from '../ui/button';
-import { RefreshCcw } from 'lucide-react';
-import CoverImage from '../spotify/cover-image';
-import { Skeleton } from '../ui/skeleton';
-import { fetchAllItems } from '@/lib/api/spotify/fetch-pages';
-import { useFetchMoreItems } from '@/hooks/spotify/fetch-more';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/select"; // Adjust import paths
+import { addPlaylistItems } from "@/lib/api/spotify/playlist";
+import type { Playlist, PlaylistTrack } from "@/types/spotify/playlist";
+import { toast } from "sonner";
+import { Button } from "../ui/button";
+import { RefreshCcw } from "lucide-react";
+import CoverImage from "../spotify/cover-image";
+import { Skeleton } from "../ui/skeleton";
+import { fetchAllItems } from "@/lib/api/spotify/fetch-pages";
+import { useFetchMoreItems } from "@/hooks/spotify/fetch-more";
+import { cn } from "@/lib/utils";
 
 interface Props {
   trackIds: string[];
@@ -38,9 +38,9 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
     isLoading,
     status: playlistStatus,
   } = useFetchMoreItems<Playlist>(
-    session?.token?.access_token ?? '',
+    session?.token?.access_token ?? "",
     `/users/${session?.user?.id}/playlists`,
-    5
+    5,
   );
 
   const [selectedPlaylistId, setSelectedPlaylistId] = React.useState<
@@ -67,7 +67,7 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
 
       const allTracks = await fetchAllItems<PlaylistTrack>(
         session.token.access_token,
-        `/playlists/${selectedPlaylist.id}/tracks`
+        `/playlists/${selectedPlaylist.id}/tracks`,
       );
 
       const allTracksIds = allTracks.map((t) => t.track.id);
@@ -77,7 +77,7 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
         await addPlaylistItems(
           session.token.access_token,
           selectedPlaylist.id,
-          addTracks
+          addTracks,
         );
 
         const wasNotAdded = trackIds.length - addTracks.length;
@@ -88,7 +88,7 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
         });
       } else {
         toast.warning(
-          `Playlist ${selectedPlaylist.name} already have all of these tracks`
+          `Playlist ${selectedPlaylist.name} already have all of these tracks`,
         );
       }
     } catch (e) {
@@ -101,20 +101,20 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
       return <Skeleton className="w-full h-8" />;
     }
 
-    if (playlistStatus === 'success' && playlists) {
+    if (playlistStatus === "success" && playlists) {
       return (
         <Select
           onValueChange={handleSelectChange}
-          value={selectedPlaylistId ?? ''}
-          disabled={playlistStatus !== 'success' || isLoading}
+          value={selectedPlaylistId ?? ""}
+          disabled={playlistStatus !== "success" || isLoading}
         >
           <SelectTrigger aria-label="Select a playlist">
             <SelectValue placeholder="Select a playlist">
               {selectedPlaylist
                 ? `${selectedPlaylist.name} (${
-                    selectedPlaylist.public ? 'Public' : 'Private'
+                    selectedPlaylist.public ? "Public" : "Private"
                   })`
-                : 'Select a playlist'}
+                : "Select a playlist"}
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
@@ -133,14 +133,14 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
                           images={
                             playlist.images
                               ? [playlist.images[0].url]
-                              : ['/spotify/default-cover.jpg']
+                              : ["/spotify/default-cover.jpg"]
                           }
                         />
                       </div>
                       <div className="text-foreground">
                         {playlist.name}
                         <p className="text-xs text-foreground/50">
-                          {playlist.public ? 'Public' : 'Private'} •{' '}
+                          {playlist.public ? "Public" : "Private"} •{" "}
                           {playlist.tracks.total} tracks
                         </p>
                       </div>
@@ -149,12 +149,12 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
                 ))
               : null}
             <Button
-              size={'sm'}
+              size={"sm"}
               onClick={() => {
                 fetchMore();
               }}
-              disabled={playlistStatus !== 'success' || isLoading}
-              className={cn('mx-4 my-2', !hasMore && 'hidden')}
+              disabled={playlistStatus !== "success" || isLoading}
+              className={cn("mx-4 my-2", !hasMore && "hidden")}
             >
               <RefreshCcw size={24} />
               Load more
@@ -165,7 +165,7 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
       );
     }
 
-    if (playlistStatus === 'error') {
+    if (playlistStatus === "error") {
       return (
         <div className="w-full h-8 rounded-lg bg-secondary">
           Error getting your playlists...
@@ -181,8 +181,8 @@ const ImportToExistingPlaylist: React.FC<Props> = ({ trackIds }) => {
       <div className="flex items-center gap-2">{renderPlaylistSelector()}</div>
       <div className="flex items-center justify-start">
         <Button
-          variant={'success'}
-          size={'sm'}
+          variant={"success"}
+          size={"sm"}
           onClick={() => {
             addToPlaylist().catch((e) => {});
           }}

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import {
   AlertTriangle,
@@ -27,17 +27,17 @@ import {
   Download,
   FileArchive,
   // eslint-disable-next-line import/no-duplicates
-} from 'lucide-react';
+} from "lucide-react";
 // eslint-disable-next-line import/no-duplicates
-import type { LucideProps } from 'lucide-react';
-import GithubSVG from './svgs/github';
-import FacebookSVG from './svgs/facebook';
-import InstagramSVG from './svgs/instagram';
-import TwitterSVG from './svgs/twitter';
-import PdfSVG from './svgs/pdf';
-import GIFSVG from './svgs/gif';
-import SiteLogo from './svgs/logo';
-import SpotifySVG from './svgs/spotify';
+import type { LucideProps } from "lucide-react";
+import GithubSVG from "./svgs/github";
+import FacebookSVG from "./svgs/facebook";
+import InstagramSVG from "./svgs/instagram";
+import TwitterSVG from "./svgs/twitter";
+import PdfSVG from "./svgs/pdf";
+import GIFSVG from "./svgs/gif";
+import SiteLogo from "./svgs/logo";
+import SpotifySVG from "./svgs/spotify";
 
 export type Icon = LucideIcon;
 

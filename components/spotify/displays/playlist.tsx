@@ -1,10 +1,10 @@
-import React from 'react';
-import type { Playlist } from '@/types/spotify/playlist';
-import Image from 'next/image';
-import { DisplayFooter, DisplayName } from '.';
+import React from "react";
+import type { Playlist } from "@/types/spotify/playlist";
+import Image from "next/image";
+import { DisplayFooter, DisplayName } from ".";
 
 const DisplayPlaylist: React.FC<{ playlist: Playlist }> = ({ playlist }) => {
-  const imageUrl = playlist.images[0]?.url ?? '/spotify/default-cover.jpg';
+  const imageUrl = playlist.images[0]?.url ?? "/spotify/default-cover.jpg";
   return (
     <div
       key={playlist.id}
@@ -17,7 +17,7 @@ const DisplayPlaylist: React.FC<{ playlist: Playlist }> = ({ playlist }) => {
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: '100%', height: 'auto', objectFit: 'cover' }} // optional
+          style={{ width: "100%", height: "auto", objectFit: "cover" }} // optional
           className="rounded-md aspect-square"
         />
       </div>

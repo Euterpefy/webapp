@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils';
-import React from 'react';
+import { cn } from "@/lib/utils";
+import React from "react";
 
 const DisplayName: React.FC<{
   children: React.ReactNode;
@@ -8,8 +8,8 @@ const DisplayName: React.FC<{
   return (
     <span
       className={cn(
-        'text-md font-medium text-ellipsis line-clamp-2',
-        className
+        "text-md font-medium text-ellipsis line-clamp-2",
+        className,
       )}
     >
       {children}
@@ -24,8 +24,8 @@ const DisplayFooter: React.FC<{
   return (
     <span
       className={cn(
-        'text-sm text-foreground/50 capitalize text-ellipsis line-clamp-2 items-center',
-        className
+        "text-sm text-foreground/50 capitalize text-ellipsis line-clamp-2 items-center",
+        className,
       )}
     >
       {children}

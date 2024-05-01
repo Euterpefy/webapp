@@ -1,47 +1,47 @@
 // api/spotify/playlist.ts
 
-import { spotifyInstance } from '@/config/spotify-api';
-import type { PagedResponse } from '@/types/spotify/pagination';
+import { spotifyInstance } from "@/config/spotify-api";
+import type { PagedResponse } from "@/types/spotify/pagination";
 import type {
   NewPlaylist,
   Playlist,
   PlaylistTrack,
-} from '@/types/spotify/playlist';
-import { HttpStatusCode } from 'axios';
+} from "@/types/spotify/playlist";
+import { HttpStatusCode } from "axios";
 
 const fetchUserPlaylists = async (
   accessToken: string,
   userId: string,
   limit = 50,
-  offset = 0
+  offset = 0,
 ): Promise<PagedResponse<Playlist>> => {
   try {
     const response = await spotifyInstance(accessToken).get(
-      `/users/${userId}/playlists?limit=${limit}&offset=${offset}`
+      `/users/${userId}/playlists?limit=${limit}&offset=${offset}`,
     );
     return response.data;
   } catch (e) {
     console.error(e);
-    throw new Error('Failed to fetch playlists');
+    throw new Error("Failed to fetch playlists");
   }
 };
 
 const fetchPlaylist = async (
   accessToken: string,
-  playlistId: string
+  playlistId: string,
 ): Promise<Playlist> => {
   const response = await spotifyInstance(accessToken).get(
-    `/playlists/${playlistId}`
+    `/playlists/${playlistId}`,
   );
   return response.data;
 };
 
 const fetchPlaylistTracks = async (
   accessToken: string,
-  playlistId: string
+  playlistId: string,
 ): Promise<PagedResponse<PlaylistTrack>> => {
   const response = await spotifyInstance(accessToken).get(
-    `/playlists/${playlistId}/tracks`
+    `/playlists/${playlistId}/tracks`,
   );
   return response.data;
 };
@@ -49,11 +49,11 @@ const fetchPlaylistTracks = async (
 const createPlaylist = async (
   accessToken: string,
   userId: string,
-  newPlaylist: NewPlaylist
+  newPlaylist: NewPlaylist,
 ): Promise<Playlist> => {
   const response = await spotifyInstance(accessToken).post(
     `/users/${userId}/playlists`,
-    newPlaylist
+    newPlaylist,
   );
   return response.data;
 };
@@ -70,9 +70,9 @@ const BATCH_SIZE = 100;
 const addPlaylistItems = async (
   accessToken: string,
   playlistId: string,
-  trackIds: string[]
+  trackIds: string[],
 ): Promise<string> => {
-  let lastSnapshotId = '';
+  let lastSnapshotId = "";
 
   for (let i = 0; i < trackIds.length; i += BATCH_SIZE) {
     const batch = trackIds.slice(i, i + BATCH_SIZE);
@@ -81,7 +81,7 @@ const addPlaylistItems = async (
       {
         playlist_id: playlistId,
         uris: batch.map((id) => `spotify:track:${id}`),
-      }
+      },
     );
     if (!(response.status === HttpStatusCode.Ok)) {
       throw new Error(`Failed to add tracks: ${response.statusText}`);

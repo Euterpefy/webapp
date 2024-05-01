@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 import {
   ResponsiveModal,
   ResponsiveModalClose,
@@ -10,11 +10,11 @@ import {
   ResponsiveModalHeader,
   ResponsiveModalTitle,
   ResponsiveModalTrigger,
-} from '@/components/ui/responsive-modal';
-import { type ButtonProps, buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { Icons } from '@/components/icons';
-import GenerateOptions from '.';
+} from "@/components/ui/responsive-modal";
+import { type ButtonProps, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Icons } from "@/components/icons";
+import GenerateOptions from ".";
 
 const OptionsDialogButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, className, variant, size, ...props }, ref): JSX.Element => {
@@ -25,11 +25,11 @@ const OptionsDialogButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <ResponsiveModalTrigger
           className={cn(
             buttonVariants({
-              variant: variant ?? 'warning',
-              size: size ?? 'default',
+              variant: variant ?? "warning",
+              size: size ?? "default",
             }),
-            'flex items-center gap-2 rounded-[24px]',
-            className
+            "flex items-center gap-2 rounded-[24px]",
+            className,
           )}
           ref={ref}
           {...props}
@@ -51,8 +51,8 @@ const OptionsDialogButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <div className="flex items-center justify-end gap-2">
               <ResponsiveModalClose
                 className={cn(
-                  buttonVariants({ variant: 'destructive', size: 'sm' }),
-                  'flex items-center justify-between gap-2'
+                  buttonVariants({ variant: "destructive", size: "sm" }),
+                  "flex items-center justify-between gap-2",
                 )}
               >
                 Cancel
@@ -62,9 +62,9 @@ const OptionsDialogButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         </ResponsiveModalContent>
       </ResponsiveModal>
     );
-  }
+  },
 );
 
-OptionsDialogButton.displayName = 'GeneratorOptionsDialogButton';
+OptionsDialogButton.displayName = "GeneratorOptionsDialogButton";
 
 export default OptionsDialogButton;

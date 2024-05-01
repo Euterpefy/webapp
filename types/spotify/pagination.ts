@@ -5,5 +5,5 @@ export interface PagedResponse<T> {
   previous?: string;
   offset: number;
   total: number;
-  items: Array<T>;
+  items: T[];
 }

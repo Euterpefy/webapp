@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
-import { rubikFont } from '@/styles/fonts';
-import { ExternalLink } from 'lucide-react';
-import type { SidebarNavItem } from '@/types';
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { rubikFont } from "@/styles/fonts";
+import { ExternalLink } from "lucide-react";
+import type { SidebarNavItem } from "@/types";
 
 export interface DocsSidebarNavProps {
   items: SidebarNavItem[];
@@ -31,7 +31,7 @@ export function DocsSidebarNav({
       {items.map((item, index) => (
         <div
           key={index}
-          className={cn('pt-2 pb-6 border-t', rubikFont.className)}
+          className={cn("pt-2 pb-6 border-t", rubikFont.className)}
         >
           <h4 className="mb-1 rounded-md px-2 text-sm font-semibold uppercase text-info">
             {item.title}
@@ -75,28 +75,28 @@ export function DocsSidebarNavItems({
           <Link
             key={index}
             href={
-              item.href.startsWith('https')
+              item.href.startsWith("https")
                 ? item.href
                 : `/${language}/${item.href}`
             } // Update the href with language prefix
             className={cn(
-              'flex w-full items-center rounded-md p-2 gap-2 hover:bg-muted text-foreground',
-              pathname === `/${language}${item.href}` ? 'bg-muted' : ''
+              "flex w-full items-center rounded-md p-2 gap-2 hover:bg-muted text-foreground",
+              pathname === `/${language}${item.href}` ? "bg-muted" : "",
             )}
             target={
-              item.external ?? item.href.startsWith('https://') ? '_blank' : ''
+              item.external ?? item.href.startsWith("https://") ? "_blank" : ""
             }
             rel={
-              item.external ?? item.href.startsWith('https://')
-                ? 'noreferrer'
-                : ''
+              item.external ?? item.href.startsWith("https://")
+                ? "noreferrer"
+                : ""
             }
           >
             {item.title}
-            {(item.external ?? item.href.startsWith('https://')) && (
+            {(item.external ?? item.href.startsWith("https://")) && (
               <ExternalLink size={16} />
             )}
-            {item.note === 'new' && (
+            {item.note === "new" && (
               <div className="bg-success text-success-foreground text-xs uppercase px-2 py-[2px] rounded-lg font-medium">
                 New
               </div>
@@ -109,7 +109,7 @@ export function DocsSidebarNavItems({
           >
             {item.title}
           </span>
-        )
+        ),
       )}
     </div>
   ) : null;

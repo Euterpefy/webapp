@@ -1,4 +1,4 @@
-import { ExternalUrls, Followers, SpotifyImage } from '.';
+import { type ExternalUrls, type Followers, type SpotifyImage } from ".";
 
 export interface Artist {
   external_urls: ExternalUrls;

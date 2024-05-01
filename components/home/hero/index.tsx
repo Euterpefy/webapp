@@ -1,8 +1,8 @@
-import React from 'react';
-import CallToAction from './call-to-action';
-import { rubikFont } from '@/styles/fonts';
-import { Icons } from '@/components/icons';
-import HomePageAudioWaves from './audio-waves';
+import React from "react";
+import CallToAction from "./call-to-action";
+import { rubikFont } from "@/styles/fonts";
+import { Icons } from "@/components/icons";
+import HomePageAudioWaves from "./audio-waves";
 
 const HeroSection = (): JSX.Element => {
   return (
@@ -10,9 +10,9 @@ const HeroSection = (): JSX.Element => {
       className="relative h-[600px] justify-center"
       style={{
         backgroundImage: `url('/site/bg2.png')`,
-        backgroundSize: 'cover', // Cover the entire section
-        backgroundPosition: 'center', // Center the background image
-        backgroundRepeat: 'no-repeat', // Do not repeat the image
+        backgroundSize: "cover", // Cover the entire section
+        backgroundPosition: "center", // Center the background image
+        backgroundRepeat: "no-repeat", // Do not repeat the image
       }}
     >
       <div className="p-8 flex flex-col justify-center ml-0 sm:ml-auto mr-0 sm:mr-12 items-center sm:items-end h-full gap-4 max-w-[600px]">

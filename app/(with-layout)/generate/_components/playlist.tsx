@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 import {
   CardTitle,
   CardDescription,
   CardHeader,
   CardContent,
   Card,
-} from '@/components/ui/card';
-import type { Track } from '@/types/spotify/track';
-import TrackList from '../../../../components/spotify/tracklist';
+} from "@/components/ui/card";
+import type { Track } from "@/types/spotify/track";
+import TrackList from "../../../../components/spotify/tracklist";
 
-import ImportPlaylistDialog from './import-playlist-dialog';
+import ImportPlaylistDialog from "./import-playlist-dialog";
 
 interface Props {
   options: Track[];
@@ -40,7 +40,7 @@ const GeneratedPlaylist: React.FC<Props> = ({ options }) => {
             tracks={recommendedTracks}
             onTrackRemove={(trackId: string) => {
               setRecommendedTracks((prev) =>
-                prev.filter((t) => t.id !== trackId)
+                prev.filter((t) => t.id !== trackId),
               );
             }}
           />

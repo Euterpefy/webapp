@@ -1,4 +1,9 @@
-import { ExplicitContent, ExternalUrls, Followers, SpotifyImage } from '.';
+import {
+  type ExplicitContent,
+  type ExternalUrls,
+  type Followers,
+  type SpotifyImage,
+} from ".";
 
 export interface User {
   display_name: string;

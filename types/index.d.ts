@@ -1,4 +1,4 @@
-export type NavMenu = {
+export interface NavMenu {
   title: string;
   items: NavItem[];
   description?: {
@@ -7,15 +7,15 @@ export type NavMenu = {
     image?: string;
     content: string;
   };
-};
+}
 
-export type NavItem = {
+export interface NavItem {
   title: string;
   href: string;
   description?: string;
   disabled?: boolean;
   image?: string;
-};
+}
 
 export type MainNavItem = NavItem | NavMenu;
 
@@ -23,7 +23,7 @@ export type SidebarNavItem = {
   title: string;
   disabled?: boolean;
   external?: boolean;
-  note?: 'new' | 'special';
+  note?: "new" | "special";
   Icon?: keyof typeof Icons;
 } & (
   | {
@@ -36,10 +36,10 @@ export type SidebarNavItem = {
     }
 );
 
-export type SiteConfig = {
+export interface SiteConfig {
   name: string;
   description: string;
   href: string;
   mainNav: MainNavItem[];
   footerNav?: NavItem[];
-};
+}

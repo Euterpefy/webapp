@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-import { spotifyInstance } from '@/config/spotify-api';
-import { PagedResponse } from '@/types/spotify/pagination';
-import { HttpStatusCode } from 'axios';
+import { spotifyInstance } from "@/config/spotify-api";
+import { PagedResponse } from "@/types/spotify/pagination";
+import { HttpStatusCode } from "axios";
 
 /**
  * Recursively fetches all items from a paged API endpoint.
@@ -12,20 +12,18 @@ import { HttpStatusCode } from 'axios';
  */
 async function fetchAllItems<T>(
   accessToken: string,
-  url: string
+  url: string,
 ): Promise<T[]> {
-  const initialResponse = await spotifyInstance(accessToken).get<
-    PagedResponse<T>
-  >(url);
+  const initialResponse =
+    await spotifyInstance(accessToken).get<PagedResponse<T>>(url);
 
   let items: T[] = [...initialResponse.data.items];
   let nextUrl = initialResponse.data.next;
   try {
     while (nextUrl) {
       console.log(nextUrl);
-      const response = await spotifyInstance(accessToken).get<PagedResponse<T>>(
-        nextUrl
-      );
+      const response =
+        await spotifyInstance(accessToken).get<PagedResponse<T>>(nextUrl);
 
       if (!(response.status === HttpStatusCode.Ok)) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
@@ -63,7 +61,7 @@ async function fetchPagedItems<T>(
   accessToken: string,
   url: string,
   pages: number = 1,
-  params?: Params
+  params?: Params,
 ): Promise<T[]> {
   let items: T[] = [];
   let currentPage = 1;
@@ -73,7 +71,7 @@ async function fetchPagedItems<T>(
     while (currentPage <= pages && nextUrl) {
       const response = await spotifyInstance(accessToken).get<PagedResponse<T>>(
         nextUrl,
-        params ? { params } : undefined
+        params ? { params } : undefined,
       );
       if (!(response.status === HttpStatusCode.Ok)) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);

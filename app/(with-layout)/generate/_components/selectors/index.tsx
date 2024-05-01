@@ -1,5 +1,5 @@
-import React from 'react';
-import { cn } from '@/lib/utils';
+import React from "react";
+import { cn } from "@/lib/utils";
 
 export interface SeedSelectorProps {
   accessToken: string | undefined;
@@ -31,9 +31,9 @@ export const SelectorItem: React.FC<SelectorItemProps> = ({
   return (
     <div
       className={cn(
-        'rounded-[12px] px-2 py-1 text-sm border cursor-pointer',
-        selected && 'bg-primary text-primary-foreground',
-        !selectable && 'cursor-not-allowed'
+        "rounded-[12px] px-2 py-1 text-sm border cursor-pointer",
+        selected && "bg-primary text-primary-foreground",
+        !selectable && "cursor-not-allowed",
       )}
       onClick={onClick}
     >

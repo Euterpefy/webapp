@@ -1,7 +1,6 @@
-import { ExternalUrls, Followers, SpotifyImage } from '.';
-import { SimplifiedTrack } from './track';
-import { PagedResponse } from './pagination';
-import { SimplifiedUser } from './user';
+import { type ExternalUrls, type Followers, type SpotifyImage } from ".";
+import { type SimplifiedTrack } from "./track";
+import { type SimplifiedUser } from "./user";
 
 export interface NewPlaylist {
   name: string;

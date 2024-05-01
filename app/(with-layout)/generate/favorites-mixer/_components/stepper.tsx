@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 import {
   CardTitle,
   CardDescription,
@@ -8,23 +8,23 @@ import {
   CardContent,
   CardFooter,
   Card,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useSession } from 'next-auth/react';
-import { toast } from 'sonner';
-import { fetchRecommendations } from '@/lib/api/spotify/recommendations';
-import { Icons } from '@/components/icons';
-import GeneratedPlaylist from '../../_components/playlist';
-import ArtistSelector from '../../_components/selectors/artist';
-import TrackSelector from '../../_components/selectors/track';
-import PreferenceSliders from '../../_components/selectors/preference-sliders';
-import SeedsProgressBar from '../../_components/seeds-count';
-import GenreSelector from '../../_components/selectors/genre';
-import type { Track, TrackArtist } from '@/types/spotify/track';
-import type { Artist } from '@/types/spotify/artist';
-import { fetchUserTopItemsPages } from '@/lib/api/spotify/user-top-items';
-import { MAXSEEDS } from '@/config/spotify-api';
-import { Skeleton } from '@/components/ui/skeleton';
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
+import { fetchRecommendations } from "@/lib/api/spotify/recommendations";
+import { Icons } from "@/components/icons";
+import GeneratedPlaylist from "../../_components/playlist";
+import ArtistSelector from "../../_components/selectors/artist";
+import TrackSelector from "../../_components/selectors/track";
+import PreferenceSliders from "../../_components/selectors/preference-sliders";
+import SeedsProgressBar from "../../_components/seeds-count";
+import GenreSelector from "../../_components/selectors/genre";
+import type { Track, TrackArtist } from "@/types/spotify/track";
+import type { Artist } from "@/types/spotify/artist";
+import { fetchUserTopItemsPages } from "@/lib/api/spotify/user-top-items";
+import { MAXSEEDS } from "@/config/spotify-api";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const FavMixerStepper = (): JSX.Element => {
   const { data: session } = useSession();
@@ -32,7 +32,7 @@ const FavMixerStepper = (): JSX.Element => {
   const [currentStep, setCurrentStep] = React.useState(1); // State to track the current step
   const [selectedGenres, setSelectedGenres] = React.useState<string[]>([]);
   const [selectedArtistIds, setSelectedArtistIds] = React.useState<string[]>(
-    []
+    [],
   );
   const [selectedTrackIds, setSelectedTrackIds] = React.useState<string[]>([]);
 
@@ -43,17 +43,17 @@ const FavMixerStepper = (): JSX.Element => {
     if (session?.token) {
       fetchUserTopItemsPages<Artist>(
         session.token.access_token,
-        'artists',
-        'medium_term',
+        "artists",
+        "medium_term",
         50,
         0,
-        2
+        2,
       )
         .then((responseData) => {
           setGenreOptions(
             Array.from(
-              new Set([...responseData.flatMap((item) => item.genres)])
-            )
+              new Set([...responseData.flatMap((item) => item.genres)]),
+            ),
           );
           setTopArtists(responseData);
         })
@@ -114,7 +114,7 @@ const FavMixerStepper = (): JSX.Element => {
           seed_genres: seedGenres,
           seed_artists: seedArtists,
           limit: 100,
-        }
+        },
       );
 
       const uniqueArtists: Record<string, TrackArtist> = {};
@@ -148,11 +148,11 @@ const FavMixerStepper = (): JSX.Element => {
           seed_artists: selectedArtistIds,
           limit: 100,
           min_popularity: 50,
-        }
+        },
       );
 
       setTrackOptions((prev) =>
-        Array.from(new Set([...prev, ...responseData.tracks]))
+        Array.from(new Set([...prev, ...responseData.tracks])),
       );
     } catch (e) {
       console.log(e);
@@ -211,7 +211,7 @@ const FavMixerStepper = (): JSX.Element => {
       }}
       // className={cn(totalSeeds === 5 && 'hidden')}
       disabled={totalSeeds === 0}
-      size={'sm'}
+      size={"sm"}
     >
       Next
     </Button>
@@ -219,12 +219,12 @@ const FavMixerStepper = (): JSX.Element => {
 
   const GenerateButton = (): JSX.Element => (
     <Button
-      variant={'success'}
+      variant={"success"}
       disabled={
         totalSeeds === 0 ||
         (selectedArtistIds.length === 0 && selectedTrackIds.length === 0)
       }
-      size={'sm'}
+      size={"sm"}
       onClick={() => {
         generateTracks().catch((e) => {});
       }}
@@ -236,7 +236,7 @@ const FavMixerStepper = (): JSX.Element => {
   );
 
   const PreviousButton = (): JSX.Element => (
-    <Button onClick={handlePrevious} variant="outline" size={'sm'}>
+    <Button onClick={handlePrevious} variant="outline" size={"sm"}>
       Previous
     </Button>
   );
@@ -247,7 +247,7 @@ const FavMixerStepper = (): JSX.Element => {
         return (
           <div className="flex flex-col gap-2">
             <div>
-              <Button onClick={startOver} variant="outline" size={'sm'}>
+              <Button onClick={startOver} variant="outline" size={"sm"}>
                 Start Over
               </Button>
             </div>
@@ -269,7 +269,7 @@ const FavMixerStepper = (): JSX.Element => {
                 <Skeleton className="h-48 w-full" />
               ) : (
                 <GenreSelector
-                  accessToken={session?.token?.access_token ?? ''}
+                  accessToken={session?.token?.access_token ?? ""}
                   selected={selectedGenres}
                   setSelected={setSelectedGenres}
                   totalSeeds={totalSeeds}
@@ -303,7 +303,7 @@ const FavMixerStepper = (): JSX.Element => {
             <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex gap-2 items-center">
                 <PreviousButton />
-                <Button onClick={startOver} variant="outline" size={'sm'}>
+                <Button onClick={startOver} variant="outline" size={"sm"}>
                   Start Over
                 </Button>
               </div>
@@ -335,7 +335,7 @@ const FavMixerStepper = (): JSX.Element => {
             <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex items-center gap-2">
                 <PreviousButton />
-                <Button onClick={startOver} variant="outline" size={'sm'}>
+                <Button onClick={startOver} variant="outline" size={"sm"}>
                   Start Over
                 </Button>
               </div>
@@ -364,7 +364,7 @@ const FavMixerStepper = (): JSX.Element => {
             <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex items-center gap-2">
                 <PreviousButton />
-                <Button onClick={startOver} variant="outline" size={'sm'}>
+                <Button onClick={startOver} variant="outline" size={"sm"}>
                   Start Over
                 </Button>
               </div>

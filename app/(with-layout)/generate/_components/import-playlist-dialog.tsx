@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   ResponsiveModal,
   ResponsiveModalClose,
@@ -8,16 +8,16 @@ import {
   ResponsiveModalHeader,
   ResponsiveModalTitle,
   ResponsiveModalTrigger,
-} from '@/components/ui/responsive-modal';
-import { Button, buttonVariants } from '../../../../components/ui/button';
-import type { NewPlaylist } from '@/types/spotify/playlist';
-import NewPlaylistForm from '../../../../components/forms/create-playlist';
-import { toast } from 'sonner';
-import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
-import { addPlaylistItems, createPlaylist } from '@/lib/api/spotify/playlist';
-import ImportToExistingPlaylist from '../../../../components/forms/import-to-existing';
-import { Icons } from '../../../../components/icons';
-import { cn } from '@/lib/utils';
+} from "@/components/ui/responsive-modal";
+import { Button, buttonVariants } from "../../../../components/ui/button";
+import type { NewPlaylist } from "@/types/spotify/playlist";
+import NewPlaylistForm from "../../../../components/forms/create-playlist";
+import { toast } from "sonner";
+import { useAuthenticatedSession } from "@/hooks/use-authenticated-session";
+import { addPlaylistItems, createPlaylist } from "@/lib/api/spotify/playlist";
+import ImportToExistingPlaylist from "../../../../components/forms/import-to-existing";
+import { Icons } from "../../../../components/icons";
+import { cn } from "@/lib/utils";
 
 interface Props {
   trackIds: string[];
@@ -26,17 +26,17 @@ interface Props {
 const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
   const [open, setOpen] = React.useState(false);
 
-  const [importOption, setImportOption] = React.useState<'' | 'new' | 'add'>(
-    ''
+  const [importOption, setImportOption] = React.useState<"" | "new" | "add">(
+    "",
   );
 
   const { data: session, status } = useAuthenticatedSession();
 
   const handlePlaylistCreate = async (
-    newPlaylist: NewPlaylist
+    newPlaylist: NewPlaylist,
   ): Promise<void> => {
     try {
-      if (status === 'loading') {
+      if (status === "loading") {
         return;
       }
       if (!session?.token || !session?.user) {
@@ -48,11 +48,11 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
         session.token.access_token,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         session.user?.id,
-        newPlaylist
+        newPlaylist,
       );
 
       if (!playlist?.id) {
-        throw new Error('Failed to create playlist');
+        throw new Error("Failed to create playlist");
       }
 
       // // Add tracks to the playlist
@@ -60,11 +60,11 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
         await addPlaylistItems(
           session.token.access_token,
           playlist.id,
-          trackIds
+          trackIds,
         );
         setOpen(false);
-        setImportOption('');
-        toast.success('Playlist created and tracks added successfully!');
+        setImportOption("");
+        toast.success("Playlist created and tracks added successfully!");
       } catch (e) {
         toast.error(`Failed to add items to playlist`);
       }
@@ -78,8 +78,8 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
     <ResponsiveModal open={open} onOpenChange={setOpen}>
       <ResponsiveModalTrigger
         className={cn(
-          buttonVariants({ variant: 'success', size: 'sm' }),
-          'flex items-center gap-2'
+          buttonVariants({ variant: "success", size: "sm" }),
+          "flex items-center gap-2",
         )}
       >
         <Icons.spotify />
@@ -89,18 +89,18 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
         <ResponsiveModalHeader>
           <ResponsiveModalTitle>Import To Spotify</ResponsiveModalTitle>
           <ResponsiveModalDescription className="flex flex-col gap-2">
-            {importOption === '' && 'How would you like to import?'}
-            {importOption === 'new' && 'Enter details for you new playlist'}
-            {importOption === 'add' && 'Choose a playlist...'}
+            {importOption === "" && "How would you like to import?"}
+            {importOption === "new" && "Enter details for you new playlist"}
+            {importOption === "add" && "Choose a playlist..."}
           </ResponsiveModalDescription>
         </ResponsiveModalHeader>
         <div className="px-4 md:px-0">
-          {importOption === '' && (
+          {importOption === "" && (
             <div className="flex items-center gap-2 justify-center">
               <div
                 className="bg-primary text-primary-foreground rounded-lg p-4 cursor-pointer"
                 onClick={() => {
-                  setImportOption('new');
+                  setImportOption("new");
                 }}
               >
                 Create new playlist
@@ -108,14 +108,14 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
               <div
                 className="bg-warning text-warning-foreground rounded-lg p-4 cursor-pointer"
                 onClick={() => {
-                  setImportOption('add');
+                  setImportOption("add");
                 }}
               >
                 Import to an existing playlist
               </div>
             </div>
           )}
-          {importOption === 'new' && (
+          {importOption === "new" && (
             <NewPlaylistForm
               onSave={(newPlaylist) => {
                 handlePlaylistCreate(newPlaylist).catch(() => {
@@ -124,18 +124,18 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
               }}
             />
           )}
-          {importOption === 'add' && (
+          {importOption === "add" && (
             <ImportToExistingPlaylist trackIds={trackIds} />
           )}
         </div>
         <ResponsiveModalFooter>
           <div className="flex items-center justify-between gap-2">
-            {importOption !== '' && (
+            {importOption !== "" && (
               <Button
-                size={'sm'}
-                variant={'outline'}
+                size={"sm"}
+                variant={"outline"}
                 onClick={() => {
-                  setImportOption('');
+                  setImportOption("");
                 }}
               >
                 Back
@@ -143,8 +143,8 @@ const ImportPlaylistDialog: React.FC<Props> = ({ trackIds }) => {
             )}
             <ResponsiveModalClose
               className={cn(
-                buttonVariants({ variant: 'destructive', size: 'sm' }),
-                'flex items-center justify-between gap-2'
+                buttonVariants({ variant: "destructive", size: "sm" }),
+                "flex items-center justify-between gap-2",
               )}
             >
               Cancel

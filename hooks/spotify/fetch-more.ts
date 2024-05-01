@@ -1,7 +1,7 @@
-import { useInfiniteQuery } from 'react-query';
-import { spotifyInstance } from '@/config/spotify-api';
-import { PagedResponse } from '@/types/spotify/pagination';
-import { AxiosError } from 'axios'; // Import this if you're using Axios for HTTP requests
+import { useInfiniteQuery } from "react-query";
+import { spotifyInstance } from "@/config/spotify-api";
+import { type PagedResponse } from "@/types/spotify/pagination";
+import { type AxiosError } from "axios"; // Import this if you're using Axios for HTTP requests
 
 interface FetchMoreItemsReturn<T> {
   data: T[];
@@ -10,26 +10,27 @@ interface FetchMoreItemsReturn<T> {
   isLoading: boolean;
   isFetchingMore: boolean;
   error: Error | null; // Specify that error should be an instance of Error or null
-  status: 'loading' | 'error' | 'success' | 'idle';
+  status: "loading" | "error" | "success" | "idle";
 }
 
 /**
  * Hook to incrementally fetch data from a paged API endpoint.
  * @param accessToken - The access token for authentication with the API.
  * @param initialUrl - The initial URL to start fetching from.
- * @param options - Options including limit for the initial fetch.
+ * @param limit - The number of items to fetch per request.
  * @returns An object containing data, fetchMore function, hasNext state, error, loading, and status.
  */
 function useFetchMoreItems<T>(
   accessToken: string,
   initialUrl: string,
-  limit: number = 20
+  limit: number = 20,
 ): FetchMoreItemsReturn<T> {
-  const fetchItems = async ({ pageParam = `${initialUrl}?limit=${limit}` }) => {
+  const fetchItems = async ({
+    pageParam = `${initialUrl}?limit=${limit}`,
+  }): Promise<PagedResponse<T>> => {
     try {
-      const response = await spotifyInstance(accessToken).get<PagedResponse<T>>(
-        pageParam
-      );
+      const response =
+        await spotifyInstance(accessToken).get<PagedResponse<T>>(pageParam);
       return response.data; // Successfully fetched data
     } catch (error: unknown) {
       throw new Error((error as AxiosError).message); // Casting to AxiosError and rethrowing as generic Error
@@ -45,16 +46,16 @@ function useFetchMoreItems<T>(
     isFetchingNextPage,
     status,
   } = useInfiniteQuery<PagedResponse<T>, Error>(
-    ['fetchMoreItems', accessToken, initialUrl],
+    ["fetchMoreItems", accessToken, initialUrl],
     fetchItems,
     {
-      getNextPageParam: (lastPage) => lastPage.next || undefined,
-    }
+      getNextPageParam: (lastPage) => lastPage.next ?? undefined,
+    },
   );
 
-  const fetchMore = () => {
+  const fetchMore = (): void => {
     if (hasNextPage) {
-      fetchNextPage();
+      fetchNextPage().catch((e) => {});
     }
   };
 

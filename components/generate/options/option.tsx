@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
 export const options: OptionProps[] = [
   {
-    icon: '🚀',
-    label: 'Quick Playlists',
+    icon: "🚀",
+    label: "Quick Playlists",
     description:
-      'Rapidly generate playlists by selecting your preferred genres, artists, or tracks. Perfect for when you want a new playlist without fuss.',
+      "Rapidly generate playlists by selecting your preferred genres, artists, or tracks. Perfect for when you want a new playlist without fuss.",
   },
   {
-    icon: '💫',
-    label: 'Mood Tuner',
+    icon: "💫",
+    label: "Mood Tuner",
     description:
-      'Dive deeper and customize playlists to match your mood with advanced controls for loudness, danceability, popularity, and more.',
+      "Dive deeper and customize playlists to match your mood with advanced controls for loudness, danceability, popularity, and more.",
   },
   {
-    icon: '❤️',
-    label: 'Favorites Mixer',
+    icon: "❤️",
+    label: "Favorites Mixer",
     description:
-      'Create playlists from your top genres, tracks, and artists, and refine them further with fine-tuned adjustments to perfectly suit your taste.',
+      "Create playlists from your top genres, tracks, and artists, and refine them further with fine-tuned adjustments to perfectly suit your taste.",
   },
   // {
   //   icon: '🔍',
