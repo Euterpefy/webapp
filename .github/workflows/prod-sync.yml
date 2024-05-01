@@ -1,0 +1,27 @@
+name: Sync Fork
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-fork:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git Credentials
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/Euterpefy/webapp.git
+          git remote set-url --add --push origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/blu3eee/euterpefy-webapp.git
+
+      - name: Sync Fork
+        run: |
+          git push --force origin "HEAD:main"
