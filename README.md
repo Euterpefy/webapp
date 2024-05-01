@@ -1,6 +1,17 @@
 # Euterpefy: Music Recommender Web App
 
+[![github actions](https://github.com/Euterpefy/webapp/actions/workflows/cicd.yml/badge.svg)](https://github.com/Euterpefy/webapp/actions/workflows/cicd.yml)
+[![prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://prettier.io)
+[![GitHub license](https://badgen.net/github/license/Euterpefy/webapp)](https://github.com/Euterpefy/webapp/blob/main/LICENSE)
+
+> **Spotify Playlists Generator**
+
+## TL;DR
+
 Euterpefy is a music recommender web application that leverages the Spotify API to provide personalized playlists based on users' mood and music preferences. Built with Next.js and Shadcn UI, this project aims to offer a seamless and intuitive experience for music enthusiasts.
+
+- [Project Website](https://euterpefy.khainguyen.dev)
+- [LICENSE](/LICENSE)
 
 ## Key Features
 
