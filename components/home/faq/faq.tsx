@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from "@/components/ui/accordion";
 
 export interface FAQProps {
   id: string;

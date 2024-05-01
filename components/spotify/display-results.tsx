@@ -1,21 +1,21 @@
-import type { SearchResult } from '@/types/spotify/search';
-import { Label } from '@/components/ui/label';
+import type { SearchResult } from "@/types/spotify/search";
+import { Label } from "@/components/ui/label";
 import {
   DisplayBox,
   DisplayBoxHeader,
   DisplayBoxItems,
   DisplayBoxLabel,
   DisplayBoxPagination,
-} from './displays/box';
-import type { Track } from '@/types/spotify/track';
-import type { Artist } from '@/types/spotify/artist';
-import type { Album } from '@/types/spotify/album';
-import type { Playlist } from '@/types/spotify/playlist';
-import React from 'react';
-import DisplayAlbum from './displays/album';
-import DisplayPlaylist from './displays/playlist';
-import DisplayArtist from './displays/artist';
-import DisplayTrack from './displays/track';
+} from "./displays/box";
+import type { Track } from "@/types/spotify/track";
+import type { Artist } from "@/types/spotify/artist";
+import type { Album } from "@/types/spotify/album";
+import type { Playlist } from "@/types/spotify/playlist";
+import React from "react";
+import DisplayAlbum from "./displays/album";
+import DisplayPlaylist from "./displays/playlist";
+import DisplayArtist from "./displays/artist";
+import DisplayTrack from "./displays/track";
 
 interface SearchResultsDisplayProps {
   results: SearchResult;

@@ -1,7 +1,7 @@
-import React from 'react';
-import { RangeSlider } from '@/components/ui/slider';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
+import React from "react";
+import { RangeSlider } from "@/components/ui/slider";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
   onValuesChange: (value: Record<string, number>) => void;
@@ -20,7 +20,7 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
       onValuesChange(preferences);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [preferences]
+    [preferences],
   );
 
   return (
@@ -35,12 +35,12 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
               key={feature.key}
               className="text-sm font-medium capitalize cursor-pointer"
               variant={
-                featureKeys.includes(feature.key) ? 'default' : 'outline'
+                featureKeys.includes(feature.key) ? "default" : "outline"
               }
               onClick={() => {
                 if (featureKeys.includes(feature.key)) {
                   setFeatureKeys((prev) =>
-                    prev.filter((f) => f !== feature.key)
+                    prev.filter((f) => f !== feature.key),
                   );
                 } else {
                   setFeatureKeys((prev) => [...prev, feature.key]);
@@ -56,18 +56,18 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
         <Label className="text-md text-info font-bold">
           Adjust to your vibe
         </Label>
-        <div key={'popularity'} className="flex flex-col gap-2">
+        <div key={"popularity"} className="flex flex-col gap-2">
           <Label className="capitalize flex items-center justify-between">
             <span className="text-warning">Popularity:</span>
             <span>
-              {preferences.min_popularity ?? 50}{' '}
-              <span className="text-foreground/70">-</span>{' '}
+              {preferences.min_popularity ?? 50}{" "}
+              <span className="text-foreground/70">-</span>{" "}
               {preferences.max_popularity ?? 100}
             </span>
           </Label>
           <RangeSlider
             {...{
-              key: 'popularity',
+              key: "popularity",
               defaultValue: [50, 100],
               min: 0,
               max: 100,
@@ -92,8 +92,8 @@ const PreferenceSliders: React.FC<Props> = ({ onValuesChange }) => {
                 <Label className="capitalize flex items-center justify-between">
                   <span className="text-warning">{feature.key}:</span>
                   <span>
-                    {preferences[`min_${key}`] ?? defaultValue[0]}{' '}
-                    <span className="text-foreground/70">-</span>{' '}
+                    {preferences[`min_${key}`] ?? defaultValue[0]}{" "}
+                    <span className="text-foreground/70">-</span>{" "}
                     {preferences[`max_${key}`] ?? defaultValue[1]}
                   </span>
                 </Label>
@@ -131,56 +131,56 @@ interface TrackFeatureProps {
 
 const trackFeatures: TrackFeatureProps[] = [
   {
-    key: 'acousticness',
+    key: "acousticness",
     defaultValue: [0, 1],
     min: 0,
     max: 1,
     step: 0.001,
   },
   {
-    key: 'danceability',
+    key: "danceability",
     defaultValue: [0, 1],
     min: 0,
     max: 1,
     step: 0.001,
   },
   {
-    key: 'energy',
+    key: "energy",
     defaultValue: [0, 1],
     min: 0,
     max: 1,
     step: 0.001,
   },
   {
-    key: 'instrumentalness',
+    key: "instrumentalness",
     defaultValue: [0, 1],
     min: 0,
     max: 1,
     step: 0.001,
   },
   {
-    key: 'liveness',
+    key: "liveness",
     defaultValue: [0, 1],
     min: 0,
     max: 1,
     step: 0.001,
   },
   {
-    key: 'loudness',
+    key: "loudness",
     defaultValue: [-60, 0],
     min: -60,
     max: 0,
     step: 0.001,
   },
   {
-    key: 'speechiness',
+    key: "speechiness",
     defaultValue: [0, 1],
     min: 0,
     max: 1,
     step: 0.001,
   },
   {
-    key: 'valence',
+    key: "valence",
     defaultValue: [0, 1],
     min: 0,
     max: 1,

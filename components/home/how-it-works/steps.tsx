@@ -1,7 +1,7 @@
-import { Icons } from '@/components/icons';
-import { cn } from '@/lib/utils';
-import { poppinsFont } from '@/styles/fonts';
-import React from 'react';
+import { Icons } from "@/components/icons";
+import { cn } from "@/lib/utils";
+import { poppinsFont } from "@/styles/fonts";
+import React from "react";
 
 interface StepProps {
   label: React.ReactNode;
@@ -10,8 +10,8 @@ interface StepProps {
 }
 
 const Step: React.FC<StepProps> = ({ label, description, className }) => (
-  <div className={cn('flex flex-col', className)}>
-    <div className={cn('font-medium text-lg text-info', poppinsFont.className)}>
+  <div className={cn("flex flex-col", className)}>
+    <div className={cn("font-medium text-lg text-info", poppinsFont.className)}>
       {label}
     </div>
     <div className="text-md text-foreground/70">{description}</div>
@@ -26,7 +26,7 @@ const Steps = (): JSX.Element => {
           key={index}
           label={step.label}
           description={step.description}
-          className={index % 2 === 1 ? 'items-end' : ''}
+          className={index % 2 === 1 ? "items-end" : ""}
         />
       ))}
     </div>
@@ -43,19 +43,19 @@ const stepsData: StepProps[] = [
         <Icons.spotify />
       </div>
     ),
-    description: 'Unlocks your music library for a personalized playlist.',
+    description: "Unlocks your music library for a personalized playlist.",
   },
   {
-    label: '2. Pick Your Seeds',
+    label: "2. Pick Your Seeds",
     description:
-      'Choose genres, artists, or songs as preferences for your playlist.',
+      "Choose genres, artists, or songs as preferences for your playlist.",
   },
   {
-    label: '3. Fine-tune the Vibe',
-    description: 'Adjust energy, mood, and popularity to match your taste.',
+    label: "3. Fine-tune the Vibe",
+    description: "Adjust energy, mood, and popularity to match your taste.",
   },
   {
-    label: '4. Get Your Perfect Playlist',
+    label: "4. Get Your Perfect Playlist",
     description: `We'll craft a playlist just for you - listen, edit, and enjoy!`,
   },
 ];

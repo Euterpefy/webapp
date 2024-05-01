@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Input } from '../ui/input'; // Adjust import paths as necessary
-import { Textarea } from '../ui/textarea';
-import { Switch } from '../ui/switch';
-import { Button } from '../ui/button';
-import type { NewPlaylist } from '@/types/spotify/playlist';
-import { Label } from '../ui/label';
+import React, { useState } from "react";
+import { Input } from "../ui/input"; // Adjust import paths as necessary
+import { Textarea } from "../ui/textarea";
+import { Switch } from "../ui/switch";
+import { Button } from "../ui/button";
+import type { NewPlaylist } from "@/types/spotify/playlist";
+import { Label } from "../ui/label";
 
 interface NewPlaylistFormProps {
   onSave: (playlist: NewPlaylist) => void;
@@ -14,14 +14,14 @@ const NewPlaylistForm: React.FC<NewPlaylistFormProps> = ({
   onSave,
 }): JSX.Element => {
   const [playlist, setPlaylist] = useState<NewPlaylist>({
-    name: '',
+    name: "",
     public: false,
     collaborative: false,
-    description: '',
+    description: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ): void => {
     const { name, value } = e.target;
     setPlaylist({ ...playlist, [name]: value });
@@ -62,7 +62,7 @@ const NewPlaylistForm: React.FC<NewPlaylistFormProps> = ({
         <Switch
           checked={playlist.public}
           onClick={() => {
-            handleSwitchChange('public');
+            handleSwitchChange("public");
           }}
           size="xs"
         />
@@ -72,7 +72,7 @@ const NewPlaylistForm: React.FC<NewPlaylistFormProps> = ({
         <Switch
           checked={playlist.collaborative}
           onClick={() => {
-            handleSwitchChange('collaborative');
+            handleSwitchChange("collaborative");
           }}
           size="xs"
         />

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 import {
   CardTitle,
   CardDescription,
@@ -8,19 +8,19 @@ import {
   CardContent,
   CardFooter,
   Card,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { useSession } from 'next-auth/react';
-import type { Track, TrackArtist } from '@/types/spotify/track';
-import { toast } from 'sonner';
-import { fetchRecommendations } from '@/lib/api/spotify/recommendations';
-import GenreSelector from './selectors/genre';
-import ArtistSelector from './selectors/artist';
-import TrackSelector from './selectors/track';
-import GeneratedPlaylist from './playlist';
-import { Icons } from '../../../../components/icons';
-import PreferenceSliders from './selectors/preference-sliders';
-import SeedsProgressBar from './seeds-count';
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
+import type { Track, TrackArtist } from "@/types/spotify/track";
+import { toast } from "sonner";
+import { fetchRecommendations } from "@/lib/api/spotify/recommendations";
+import GenreSelector from "./selectors/genre";
+import ArtistSelector from "./selectors/artist";
+import TrackSelector from "./selectors/track";
+import GeneratedPlaylist from "./playlist";
+import { Icons } from "../../../../components/icons";
+import PreferenceSliders from "./selectors/preference-sliders";
+import SeedsProgressBar from "./seeds-count";
 
 interface Props {
   advanced?: boolean;
@@ -32,7 +32,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
   const [currentStep, setCurrentStep] = React.useState(1); // State to track the current step
   const [selectedGenres, setSelectedGenres] = React.useState<string[]>([]);
   const [selectedArtistIds, setSelectedArtistIds] = React.useState<string[]>(
-    []
+    [],
   );
   const [selectedTrackIds, setSelectedTrackIds] = React.useState<string[]>([]);
 
@@ -73,7 +73,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
           seed_genres: selectedGenres,
           limit: 100,
           min_popularity: 50,
-        }
+        },
       );
       const uniqueArtists: Record<string, TrackArtist> = {};
       responseData.tracks.forEach((track) => {
@@ -101,11 +101,11 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
           seed_artists: selectedArtistIds,
           limit: 100,
           min_popularity: 50,
-        }
+        },
       );
 
       setTrackOptions((prev) =>
-        Array.from(new Set([...prev, ...responseData.tracks]))
+        Array.from(new Set([...prev, ...responseData.tracks])),
       );
     } catch (e) {
       console.log(e);
@@ -171,7 +171,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
         }
       }}
       disabled={!advanced && (totalSeeds === 5 || totalSeeds === 0)}
-      size={'sm'}
+      size={"sm"}
     >
       Next
     </Button>
@@ -179,9 +179,9 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
 
   const GenerateButton = (): JSX.Element => (
     <Button
-      variant={'success'}
+      variant={"success"}
       disabled={totalSeeds === 0}
-      size={'sm'}
+      size={"sm"}
       onClick={() => {
         generateTracks().catch(() => {});
       }}
@@ -193,7 +193,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
   );
 
   const PreviousButton = (): JSX.Element => (
-    <Button onClick={handlePrevious} variant="outline" size={'sm'}>
+    <Button onClick={handlePrevious} variant="outline" size={"sm"}>
       Previous
     </Button>
   );
@@ -204,7 +204,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
         return (
           <div className="flex flex-col gap-2">
             <div>
-              <Button onClick={startOver} variant="outline" size={'sm'}>
+              <Button onClick={startOver} variant="outline" size={"sm"}>
                 Start Over
               </Button>
             </div>
@@ -223,7 +223,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
             <CardContent className="space-y-2">
               {/* Render genre selectors here */}
               <GenreSelector
-                accessToken={session?.token?.access_token ?? ''}
+                accessToken={session?.token?.access_token ?? ""}
                 selected={selectedGenres}
                 setSelected={setSelectedGenres}
                 totalSeeds={totalSeeds}
@@ -256,7 +256,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
             <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex gap-2 items-center">
                 <PreviousButton />
-                <Button onClick={startOver} variant="outline" size={'sm'}>
+                <Button onClick={startOver} variant="outline" size={"sm"}>
                   Start Over
                 </Button>
               </div>
@@ -288,7 +288,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
             <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex items-center gap-2">
                 <PreviousButton />
-                <Button onClick={startOver} variant="outline" size={'sm'}>
+                <Button onClick={startOver} variant="outline" size={"sm"}>
                   Start Over
                 </Button>
               </div>
@@ -317,7 +317,7 @@ const GenerateSteps: React.FC<Props> = ({ advanced = false }): JSX.Element => {
             <CardFooter className="flex justify-between flex-col-reverse gap-2 md:flex-row">
               <div className="flex items-center gap-2">
                 <PreviousButton />
-                <Button onClick={startOver} variant="outline" size={'sm'}>
+                <Button onClick={startOver} variant="outline" size={"sm"}>
                   Start Over
                 </Button>
               </div>

@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
 import {
   type SearchResult,
   type SearchType,
   defaultSearchTypes,
-} from '@/types/spotify/search';
-import React from 'react';
+} from "@/types/spotify/search";
+import React from "react";
 
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Search } from 'lucide-react';
-import { toast } from 'sonner';
-import { searchSpotify } from '@/lib/api/spotify/search';
-import { useAuthenticatedSession } from '@/hooks/use-authenticated-session';
-import { Badge } from '@/components/ui/badge';
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
+import { toast } from "sonner";
+import { searchSpotify } from "@/lib/api/spotify/search";
+import { useAuthenticatedSession } from "@/hooks/use-authenticated-session";
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
   loadOnChange?: boolean;
@@ -32,15 +32,15 @@ const SpotifySearch: React.FC<Props> = ({
 }) => {
   const { data: session, status } = useAuthenticatedSession();
 
-  const [searchKey, setSearchKey] = React.useState('imagine dragons');
+  const [searchKey, setSearchKey] = React.useState("imagine dragons");
   const [searchTypes, setSearchTypes] = React.useState<SearchType[]>(
-    initSearchTypes ?? defaultSearchTypes
+    initSearchTypes ?? defaultSearchTypes,
   );
 
   const [results, setResults] = React.useState<SearchResult | null>(null);
 
   const fetchSearchResults = async (): Promise<void> => {
-    if (status === 'loading' || searchKey === '') {
+    if (status === "loading" || searchKey === "") {
       return;
     }
     if (!session?.token?.access_token) {
@@ -51,7 +51,7 @@ const SpotifySearch: React.FC<Props> = ({
     if (accessToken) {
       const searchQuery =
         searchKey +
-        (genres && genres.length > 0 ? ` genre:${genres.join(',')}` : '');
+        (genres && genres.length > 0 ? ` genre:${genres.join(",")}` : "");
       try {
         const searchResults = await searchSpotify(accessToken, {
           q: searchQuery,
@@ -60,7 +60,7 @@ const SpotifySearch: React.FC<Props> = ({
 
         setResults(searchResults);
       } catch (e) {
-        toast.error('Error searching');
+        toast.error("Error searching");
       }
     }
   };
@@ -72,7 +72,7 @@ const SpotifySearch: React.FC<Props> = ({
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [results]
+    [results],
   );
 
   React.useEffect(
@@ -92,7 +92,7 @@ const SpotifySearch: React.FC<Props> = ({
       };
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [searchKey, loadOnChange]
+    [searchKey, loadOnChange],
   );
 
   const handleSearchButtonClick = async (): Promise<void> => {
@@ -141,7 +141,7 @@ const SpotifySearch: React.FC<Props> = ({
               <Badge
                 key={type}
                 className="cursor-pointer"
-                variant={searchTypes.includes(type) ? 'default' : 'outline'}
+                variant={searchTypes.includes(type) ? "default" : "outline"}
                 onClick={() => {
                   if (searchTypes.includes(type)) {
                     setSearchTypes((prev) => prev.filter((x) => x !== type));

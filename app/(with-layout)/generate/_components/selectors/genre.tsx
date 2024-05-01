@@ -1,10 +1,10 @@
 // components/generate/selectors/genre.tsx
 
-import useGenres from '@/hooks/spotify/genres';
-import React from 'react';
-import { SelectorItem, type SeedSelectorProps } from '.';
-import { Skeleton } from '@/components/ui/skeleton';
-import { MAXSEEDS } from '@/config/spotify-api';
+import useGenres from "@/hooks/spotify/genres";
+import React from "react";
+import { SelectorItem, type SeedSelectorProps } from ".";
+import { Skeleton } from "@/components/ui/skeleton";
+import { MAXSEEDS } from "@/config/spotify-api";
 
 interface GenreSelectorProps {
   genreOptions?: string[];
@@ -19,7 +19,7 @@ const GenreSelector: React.FC<SeedSelectorProps & GenreSelectorProps> = ({
 }) => {
   const { data: genres, isLoading, isError, error } = useGenres(accessToken);
   const genreList = Array.from(
-    new Set([...(genreOptions ?? []), ...(genres ?? [])])
+    new Set([...(genreOptions ?? []), ...(genres ?? [])]),
   );
 
   if (isLoading) return <p>Loading genres...</p>;

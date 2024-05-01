@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import * as React from 'react';
+import * as React from "react";
 
-import type { TableOfContents } from '@/lib/toc';
-import { cn } from '@/lib/utils';
-import { useMounted } from '@/hooks/use-mounted';
+import type { TableOfContents } from "@/lib/toc";
+import { cn } from "@/lib/utils";
+import { useMounted } from "@/hooks/use-mounted";
 
 interface TocProps {
   toc: TableOfContents;
@@ -25,9 +25,9 @@ export function DashboardTableOfContents({
             .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
             .flat()
             .filter(Boolean)
-            .map((id) => id?.split('#')[1])
+            .map((id) => id?.split("#")[1])
         : [],
-    [toc]
+    [toc],
   );
   const activeHeading = useActiveItem(itemIds);
   const mounted = useMounted();
@@ -50,7 +50,7 @@ export function DashboardTableOfContents({
  * @returns {string} The ID of the active item.
  */
 function useActiveItem(itemIds: Array<string | undefined>): string {
-  const [activeId, setActiveId] = React.useState<string>('');
+  const [activeId, setActiveId] = React.useState<string>("");
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,7 +61,7 @@ function useActiveItem(itemIds: Array<string | undefined>): string {
           }
         });
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `0% 0% -80% 0%` },
     );
 
     itemIds?.forEach((id) => {
@@ -108,17 +108,17 @@ interface TreeProps {
  */
 function Tree({ tree, level = 1, activeItem }: TreeProps): JSX.Element | null {
   return tree?.items?.length && level < 3 ? (
-    <ul className={cn('m-0 list-none', { 'pl-4': level !== 1 })}>
+    <ul className={cn("m-0 list-none", { "pl-4": level !== 1 })}>
       {tree.items.map((item, index) => {
         return (
-          <li key={index} className={cn('mt-0 pt-2')}>
+          <li key={index} className={cn("mt-0 pt-2")}>
             <a
               href={item.url}
               className={cn(
-                'inline-block no-underline',
+                "inline-block no-underline",
                 item.url === `#${activeItem}`
-                  ? 'font-medium text-primary'
-                  : 'text-sm text-muted-foreground'
+                  ? "font-medium text-primary"
+                  : "text-sm text-muted-foreground",
               )}
             >
               {item.title}

@@ -1,5 +1,9 @@
-import { ExternalIds, ExternalUrls, SpotifyRestrictions } from '.';
-import { SimplifiedAlbum } from './album';
+import {
+  type ExternalIds,
+  type ExternalUrls,
+  type SpotifyRestrictions,
+} from ".";
+import { type SimplifiedAlbum } from "./album";
 
 export interface Track {
   album: SimplifiedAlbum;

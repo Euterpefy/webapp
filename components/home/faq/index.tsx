@@ -1,7 +1,7 @@
-import { Accordion } from '@/components/ui/accordion';
-import React from 'react';
-import { faqList } from './faqs';
-import FAQ from './faq';
+import { Accordion } from "@/components/ui/accordion";
+import React from "react";
+import { faqList } from "./faqs";
+import FAQ from "./faq";
 
 const FAQSection = (): JSX.Element => {
   return (

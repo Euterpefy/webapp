@@ -1,8 +1,8 @@
-import React from 'react';
-import HeroSection from '@/components/home/hero';
-import HowItWorks from '@/components/home/how-it-works';
-import HomePageAlert from '@/components/home/alert';
-import FAQSection from '@/components/home/faq';
+import React from "react";
+import HeroSection from "@/components/home/hero";
+import HowItWorks from "@/components/home/how-it-works";
+import HomePageAlert from "@/components/home/alert";
+import FAQSection from "@/components/home/faq";
 
 /**
  * Home component that represents the main content of the homepage.

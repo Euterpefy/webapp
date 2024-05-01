@@ -1,6 +1,6 @@
-import React from 'react';
-import Steps from './steps';
-import CallToAction from './cta';
+import React from "react";
+import Steps from "./steps";
+import CallToAction from "./cta";
 
 const HowItWorks = (): JSX.Element => {
   return (

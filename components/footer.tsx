@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
-import type { JSX } from 'react'; // Changed to import type
-import { cn } from '@/lib/utils';
-import type { AdditionalProps } from '.';
-import { ModeToggle } from './mode-toggle';
-import { Icons } from './icons';
-import { poppinsFont, rubikFont } from '@/styles/fonts';
-import { siteConfig } from '@/config/site';
-import Link from 'next/link';
+import type { JSX } from "react"; // Changed to import type
+import { cn } from "@/lib/utils";
+import type { AdditionalProps } from ".";
+import { ModeToggle } from "./mode-toggle";
+import { Icons } from "./icons";
+import { poppinsFont, rubikFont } from "@/styles/fonts";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
 
 /**
  * Renders the footer section of the application
@@ -25,7 +25,7 @@ export function Footer({ className }: AdditionalProps): JSX.Element {
             <span
               className={cn(
                 rubikFont.className,
-                'uppercase font-bold text-xl '
+                "uppercase font-bold text-xl ",
               )}
             >
               {siteConfig.name}
@@ -41,8 +41,8 @@ export function Footer({ className }: AdditionalProps): JSX.Element {
                   key={index}
                   href={navItem.href}
                   className={cn(
-                    'capitalize font-medium text-xs underline text-secondary-foreground/50',
-                    poppinsFont.className
+                    "capitalize font-medium text-xs underline text-secondary-foreground/50",
+                    poppinsFont.className,
                   )}
                 >
                   {navItem.title}

@@ -1,11 +1,11 @@
 // api/spotify/search.ts
 
-import { spotifyInstance } from '@/config/spotify-api';
-import type { SearchRequestParams, SearchResult } from '@/types/spotify/search';
+import { spotifyInstance } from "@/config/spotify-api";
+import type { SearchRequestParams, SearchResult } from "@/types/spotify/search";
 
 export const searchSpotify = async (
   accessToken: string,
-  params: SearchRequestParams
+  params: SearchRequestParams,
 ): Promise<SearchResult> => {
   try {
     const queryParams = new URLSearchParams();
@@ -13,20 +13,20 @@ export const searchSpotify = async (
     for (const [key, value] of Object.entries(params)) {
       if (value !== undefined) {
         if (Array.isArray(value)) {
-          queryParams.set(key, value.join(','));
+          queryParams.set(key, value.join(","));
         } else {
           queryParams.set(key, String(value));
         }
       }
     }
 
-    const response = await spotifyInstance(accessToken).get('/search', {
+    const response = await spotifyInstance(accessToken).get("/search", {
       params: queryParams,
     });
 
     return response.data as SearchResult;
   } catch (error) {
-    console.error('Error searching Spotify:', error);
+    console.error("Error searching Spotify:", error);
     throw error;
   }
 };

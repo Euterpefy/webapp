@@ -1,32 +1,32 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
 interface Props {
   images: string[];
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 }
 
 const CoverImage: React.FC<Props> = ({ images, size }) => {
   const getContainerSize = (): string => {
     switch (size) {
-      case 'sm':
-        return 'h-8 w-8';
-      case 'md':
-        return 'h-12 w-12';
-      case 'lg':
-        return 'h-16 w-16';
+      case "sm":
+        return "h-8 w-8";
+      case "md":
+        return "h-12 w-12";
+      case "lg":
+        return "h-16 w-16";
       default:
-        return 'h-12 w-12';
+        return "h-12 w-12";
     }
   };
 
   const getImageSize = (): { height: number; width: number } => {
     switch (size) {
-      case 'sm':
+      case "sm":
         return { height: 25, width: 25 };
-      case 'md':
+      case "md":
         return { height: 50, width: 50 };
-      case 'lg':
+      case "lg":
         return { height: 75, width: 75 };
       default:
         return { height: 50, width: 50 };
@@ -42,7 +42,7 @@ const CoverImage: React.FC<Props> = ({ images, size }) => {
           key={index}
           src={img}
           alt="Track cover"
-          className={'h-full w-full object-cover'}
+          className={"h-full w-full object-cover"}
           priority={true}
           {...getImageSize()}
         />

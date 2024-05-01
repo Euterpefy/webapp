@@ -1,21 +1,22 @@
-import { useState, useEffect, useMemo, RefObject } from 'react';
+import { useState, useEffect, useMemo, type RefObject } from "react";
 
-export default function useOnScreen(ref: RefObject<HTMLElement>) {
+/**
+ * Checks if the HTML element referenced by `ref` is visible within the viewport based on an intersection threshold.
+ * @param ref - RefObject pointing to the target HTML element to observe.
+ * @returns Boolean indicating whether the element is currently visible on the screen.
+ */
+export default function useOnScreen(ref: RefObject<HTMLElement>): boolean {
   const [isIntersecting, setIntersecting] = useState(false);
 
-  const observer = useMemo(
-    () =>
-      new IntersectionObserver(
-        ([entry]) => {
-          console.log('Intersection change:', entry.isIntersecting); // Debug log
-          setIntersecting(entry.isIntersecting);
-        },
-        {
-          threshold: 0.1,
-        }
-      ),
-    []
-  );
+  const observer = useMemo(() => {
+    return new IntersectionObserver(
+      ([entry]) => {
+        console.log("Intersection change:", entry.isIntersecting); // Debug log
+        setIntersecting(entry.isIntersecting);
+      },
+      { threshold: 0.1 },
+    );
+  }, []);
 
   useEffect(() => {
     const currentElement = ref.current;
@@ -23,11 +24,13 @@ export default function useOnScreen(ref: RefObject<HTMLElement>) {
       observer.observe(currentElement);
     }
 
-    // Clean up function to disconnect the observer
     return () => {
+      if (currentElement) {
+        observer.unobserve(currentElement);
+      }
       observer.disconnect();
     };
-  }, [observer, ref.current]); // Correctly react to changes in ref.current
+  }, [observer, ref]); // Dependency list adjusted
 
   return isIntersecting;
 }

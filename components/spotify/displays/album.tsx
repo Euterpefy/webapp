@@ -1,10 +1,10 @@
-import React from 'react';
-import Image from 'next/image';
-import type { Album } from '@/types/spotify/album';
-import { DisplayFooter, DisplayName } from '.';
+import React from "react";
+import Image from "next/image";
+import type { Album } from "@/types/spotify/album";
+import { DisplayFooter, DisplayName } from ".";
 
 const DisplayAlbum: React.FC<{ album: Album }> = ({ album }) => {
-  const imageUrl = album.images[0]?.url ?? '/spotify/default-cover.jpg';
+  const imageUrl = album.images[0]?.url ?? "/spotify/default-cover.jpg";
   return (
     <div
       key={album.id}
@@ -17,7 +17,7 @@ const DisplayAlbum: React.FC<{ album: Album }> = ({ album }) => {
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: '100%', height: 'auto', objectFit: 'cover' }} // optional
+          style={{ width: "100%", height: "auto", objectFit: "cover" }} // optional
           className="rounded-md aspect-square"
         />
       </div>
@@ -26,7 +26,7 @@ const DisplayAlbum: React.FC<{ album: Album }> = ({ album }) => {
         <DisplayFooter>
           {album.release_date.slice(0, 4)}
           <span className="mx-1">•</span>
-          {album.artists.map((a) => a.name).join(', ')}
+          {album.artists.map((a) => a.name).join(", ")}
         </DisplayFooter>
       </div>
     </div>

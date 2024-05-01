@@ -1,5 +1,5 @@
-import type { LucideProps } from 'lucide-react';
-import React from 'react';
+import type { LucideProps } from "lucide-react";
+import React from "react";
 
 const SiteLogo: React.FC<LucideProps> = (props): React.JSX.Element => {
   return (
@@ -7,8 +7,8 @@ const SiteLogo: React.FC<LucideProps> = (props): React.JSX.Element => {
       viewBox="0 0 511 655"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
-      height={props.height ?? props.width ?? props.size ?? '511'}
-      width={props.width ?? props.height ?? props.size ?? '655'}
+      height={props.height ?? props.width ?? props.size ?? "511"}
+      width={props.width ?? props.height ?? props.size ?? "655"}
       {...props} // Spread additional props to the SVG element
     >
       <path

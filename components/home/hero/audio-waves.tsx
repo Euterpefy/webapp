@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { Icons } from '@/components/icons';
-import AudioWaveform from '@/components/spotify/waveforms';
-import { fetchUserTopItems } from '@/lib/api/spotify/user-top-items';
-import type { Track } from '@/types/spotify/track';
-import { useSession } from 'next-auth/react';
-import React from 'react';
+import { Icons } from "@/components/icons";
+import AudioWaveform from "@/components/spotify/waveforms";
+import { fetchUserTopItems } from "@/lib/api/spotify/user-top-items";
+import type { Track } from "@/types/spotify/track";
+import { useSession } from "next-auth/react";
+import React from "react";
 
 const HomePageAudioWaves = (): JSX.Element => {
   const [audioUrl, setAudioUrl] = React.useState(
-    'https://p.scdn.co/mp3-preview/f6f9512f66f19e8244b7ee26908a87c41b2a80ab?cid=cfe923b2d660439caf2b557b21f31221'
+    "https://p.scdn.co/mp3-preview/f6f9512f66f19e8244b7ee26908a87c41b2a80ab?cid=cfe923b2d660439caf2b557b21f31221",
   );
   const [userTopTrack, setUserTopTrack] = React.useState<Track | null>(null);
 
   const { data: session, status } = useSession();
   React.useEffect(() => {
-    if (status === 'authenticated' && session?.token) {
+    if (status === "authenticated" && session?.token) {
       fetchUserTopItems<Track>(
-        session.token.access_token ?? '',
-        'tracks',
-        'long_term'
+        session.token.access_token ?? "",
+        "tracks",
+        "long_term",
       )
         .then((response) => {
           const trackWithPreview = response.items.find(
-            (track) => track.preview_url !== null
+            (track) => track.preview_url !== null,
           );
           setUserTopTrack(trackWithPreview ?? null);
         })

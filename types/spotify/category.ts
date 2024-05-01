@@ -1,4 +1,4 @@
-import { SpotifyImage } from '.';
+import { type SpotifyImage } from ".";
 
 export interface Category {
   href: string;

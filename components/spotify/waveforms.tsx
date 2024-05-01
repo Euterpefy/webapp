@@ -1,6 +1,6 @@
-'use client';
-import React, { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
+"use client";
+import React, { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface AudioWaveformProps {
   url: string;
@@ -26,15 +26,14 @@ const AudioWaveform: React.FC<AudioWaveformProps> = ({
       try {
         const response = await fetch(url);
         const arrayBuffer = await response.arrayBuffer();
-        const audioBuffer = await audioContextRef.current?.decodeAudioData(
-          arrayBuffer
-        );
+        const audioBuffer =
+          await audioContextRef.current?.decodeAudioData(arrayBuffer);
         if (audioBuffer) {
           const bars = extractBars(audioBuffer);
           setBarHeights(bars);
         }
       } catch (error) {
-        console.error('Error fetching or decoding audio:', error);
+        console.error("Error fetching or decoding audio:", error);
       }
     };
 
@@ -58,7 +57,7 @@ const AudioWaveform: React.FC<AudioWaveformProps> = ({
 
     // Calculate how many samples each bar should represent
     const samplesPerBar = Math.floor(
-      (sampleRate * frameDuration) / barsPerFrame
+      (sampleRate * frameDuration) / barsPerFrame,
     );
     const amp = 100; // Scale factor for visualization
 
@@ -93,14 +92,14 @@ const AudioWaveform: React.FC<AudioWaveformProps> = ({
 
   return (
     <div
-      className={cn('flex h-36 items-end gap-[2px] overflow-hidden', className)}
+      className={cn("flex h-36 items-end gap-[2px] overflow-hidden", className)}
     >
       {currentBars.map((height, index) => (
         <div
           key={index}
           className={cn(
-            'bg-primary/60 transition-all duration-1000',
-            barClassName
+            "bg-primary/60 transition-all duration-1000",
+            barClassName,
           )}
           style={{
             height: `${height}%`,

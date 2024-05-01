@@ -1,26 +1,26 @@
 /* eslint-disable */
-import React from 'react';
+import React from "react";
 // import Content from '@/content/privacy.mdx';
-import { useGetMdxBySlugs } from '@/lib/mdx';
-import { DashboardTableOfContents } from '@/components/toc';
+import { useGetMdxBySlugs } from "@/lib/mdx";
+import { DashboardTableOfContents } from "@/components/toc";
 
 const useGetDocContent = async (language: string, slugs: string[]) => {
   try {
     const { meta, content, toc } = await useGetMdxBySlugs(
-      language ?? 'en',
-      [language].concat(!slugs || slugs.length == 0 ? [] : slugs)
+      language ?? "en",
+      [language].concat(!slugs || slugs.length == 0 ? [] : slugs),
     );
     return { meta, content, toc };
   } catch (err) {
     try {
       const { meta, content, toc } = await useGetMdxBySlugs(
-        'en',
-        ['en'].concat(slugs ?? [])
+        "en",
+        ["en"].concat(slugs ?? []),
       );
       return { meta, content, toc };
     } catch {
       // Handle the 'File not found' error here
-      console.error('File not found:', err);
+      console.error("File not found:", err);
       return {
         meta: null,
         content: <div>404 - Page not found</div>,
@@ -31,7 +31,7 @@ const useGetDocContent = async (language: string, slugs: string[]) => {
 };
 
 export default async function PrivacyPage() {
-  const { content, toc, meta } = await useGetDocContent('en', ['tos']);
+  const { content, toc, meta } = await useGetDocContent("en", ["tos"]);
   return (
     <div className="relative py-6 lg:gap-10 lg:py-10 xl:grid xl:grid-cols-[1fr_300px]">
       <div className="mx-auto w-full min-w-0 max-w-[1024px] px-6">

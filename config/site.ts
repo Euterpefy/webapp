@@ -1,24 +1,24 @@
-import { MainNavItem, SiteConfig } from '@/types';
+import { type MainNavItem, type SiteConfig } from "@/types";
 
 export const mainNavItems: MainNavItem[] = [
   {
-    title: 'Playlist Generators',
+    title: "Playlist Generators",
     items: [
       {
-        title: 'Quick Generator',
-        href: '/generate/quick-playlists',
-        description: 'Quick generation with 3 simple steps',
+        title: "Quick Generator",
+        href: "/generate/quick-playlists",
+        description: "Quick generation with 3 simple steps",
       },
       {
-        title: 'Mood Tuner Generator',
-        href: '/generate/mood-tuner',
+        title: "Mood Tuner Generator",
+        href: "/generate/mood-tuner",
         description: `Customize playlists to match your mood`,
       },
       {
-        title: 'Favorites Mixer Generator',
-        href: '/generate/favorites-mixer',
+        title: "Favorites Mixer Generator",
+        href: "/generate/favorites-mixer",
         description:
-          'Create playlists from your top genres, tracks, and artists.',
+          "Create playlists from your top genres, tracks, and artists.",
       },
       // {
       //   title: 'Discovery Composer Generator',
@@ -29,34 +29,34 @@ export const mainNavItems: MainNavItem[] = [
     ],
   },
   {
-    title: 'Learn more',
+    title: "Learn more",
     items: [
       {
-        title: 'Privacy',
-        href: '/privacy',
-        description: 'Our privacy policy',
+        title: "Privacy",
+        href: "/privacy",
+        description: "Our privacy policy",
       },
       {
-        title: 'Terms of Service',
-        href: '/terms-of-service',
+        title: "Terms of Service",
+        href: "/terms-of-service",
       },
     ],
   },
 ];
 
 export const siteConfig: SiteConfig = {
-  name: 'Euterpefy',
-  description: 'Music playlist recommender and generator',
-  href: '/',
+  name: "Euterpefy",
+  description: "Music playlist recommender and generator",
+  href: "/",
   mainNav: mainNavItems,
   footerNav: [
     {
-      title: 'Privacy policy',
-      href: '/privacy',
+      title: "Privacy policy",
+      href: "/privacy",
     },
     {
-      title: 'Terms of Service',
-      href: '/terms-of-service',
+      title: "Terms of Service",
+      href: "/terms-of-service",
     },
   ],
 };

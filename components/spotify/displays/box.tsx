@@ -1,13 +1,13 @@
-import React from 'react';
-import { chunkArray, cn } from '@/lib/utils';
+import React from "react";
+import { chunkArray, cn } from "@/lib/utils";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
-import type { PagedResponse } from '@/types/spotify/pagination';
+} from "@/components/ui/carousel";
+import type { PagedResponse } from "@/types/spotify/pagination";
 
 interface DisplayBoxProps {
   children: React.ReactNode;
@@ -16,7 +16,7 @@ interface DisplayBoxProps {
 
 const DisplayBox: React.FC<DisplayBoxProps> = ({ children, className }) => {
   return (
-    <Carousel className={cn('w-full flex flex-col gap-2', className)}>
+    <Carousel className={cn("w-full flex flex-col gap-2", className)}>
       {children}
     </Carousel>
   );
@@ -32,7 +32,7 @@ const DisplayBoxHeader: React.FC<DisplayBoxHeaderProps> = ({
   className,
 }) => {
   return (
-    <div className={cn('flex items-center justify-between', className)}>
+    <div className={cn("flex items-center justify-between", className)}>
       {children}
     </div>
   );
@@ -47,7 +47,7 @@ const DisplayBoxLabel: React.FC<DisplayBoxLabelProps> = ({
   children,
   className,
 }) => {
-  return <div className={cn('text-xl font-bold', className)}>{children}</div>;
+  return <div className={cn("text-xl font-bold", className)}>{children}</div>;
 };
 
 interface DisplayBoxPaginationProps {
@@ -57,7 +57,7 @@ const DisplayBoxPagination: React.FC<DisplayBoxPaginationProps> = ({
   className,
 }) => {
   return (
-    <div className={cn('flex flex-items gap-1', className)}>
+    <div className={cn("flex flex-items gap-1", className)}>
       <CarouselPrevious className="relative -right-0 top-0 left-0 -translate-y-0" />
       <CarouselNext className="relative -right-0 top-0 left-0 -translate-y-0" />
     </div>
@@ -88,8 +88,8 @@ const DisplayBoxItems = <T,>({
         <CarouselItem
           key={index}
           className={cn(
-            'flex w-fit flex-col items-start gap-2 basis-1/2 md:basis-1/3 lg:basis-1/4',
-            itemClassName
+            "flex w-fit flex-col items-start gap-2 basis-1/2 md:basis-1/3 lg:basis-1/4",
+            itemClassName,
           )}
         >
           {chunk.map((item, j) => (

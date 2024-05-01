@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import Link from 'next/link';
+import * as React from "react";
+import Link from "next/link";
 
-import type { NavMenu, MainNavItem, NavItem } from '@/types';
+import type { NavMenu, MainNavItem, NavItem } from "@/types";
 
-import { Icons } from '@/components/icons';
-import { MobileNav } from '@/components/nav/mobile';
-import { rubikFont } from '@/styles/fonts';
-import { ExternalLink, Menu } from 'lucide-react';
+import { Icons } from "@/components/icons";
+import { MobileNav } from "@/components/nav/mobile";
+import { rubikFont } from "@/styles/fonts";
+import { ExternalLink, Menu } from "lucide-react";
 // import { ModeToggle } from '../mode-toggle';
-import { Button } from '../ui/button';
+import { Button } from "../ui/button";
 
 import {
   NavigationMenu,
@@ -20,12 +20,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
-import { cn } from '@/lib/utils';
-import Image from 'next/image';
-import { siteConfig } from '@/config/site';
-import AuthButton from '../auth/auth-button';
-import type { AdditionalProps } from '..';
+} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { siteConfig } from "@/config/site";
+import AuthButton from "../auth/auth-button";
+import type { AdditionalProps } from "..";
 
 interface MainNavProps {
   items?: MainNavItem[];
@@ -63,7 +63,7 @@ export function MainNav({ items, children }: MainNavProps): JSX.Element {
     <>
       <div className="flex gap-2 items-center md:hidden">
         <Button
-          variant={'ghost'}
+          variant={"ghost"}
           className="relative h-9 w-8 px-0 hover:bg-primary/50"
           onClick={toggleMobileMenu}
         >
@@ -82,7 +82,7 @@ export function MainNav({ items, children }: MainNavProps): JSX.Element {
       )}
       <div className="flex gap-6 md:gap-10 justify-between items-center w-fit md:w-full">
         <div className="flex gap-6 items-center">
-          <Link className="flex items-center" href={'/'}>
+          <Link className="flex items-center" href={"/"}>
             <Icons.logo size={32} />
             <span
               className={`ml-6 font-bold text-2xl uppercase tracking-widest hidden md:block ${rubikFont.className}`}
@@ -111,11 +111,11 @@ export function MainNav({ items, children }: MainNavProps): JSX.Element {
                           <NavigationMenuLink
                             className={cn(
                               navigationMenuTriggerStyle(),
-                              'gap-2'
+                              "gap-2",
                             )}
                           >
                             {item.title}
-                            {item.href.startsWith('https') && (
+                            {item.href.startsWith("https") && (
                               <ExternalLink size={16} />
                             )}
                           </NavigationMenuLink>
@@ -159,8 +159,8 @@ function isNavMenu(item: MainNavItem): item is NavMenu {
  * @returns {JSX.Element} The list item component.
  */
 const ListItem = React.forwardRef<
-  React.ElementRef<'a'>,
-  React.ComponentPropsWithoutRef<'a'> & AdditionalProps & { title: string }
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a"> & AdditionalProps & { title: string }
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
@@ -168,8 +168,8 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className,
           )}
           {...props}
         >
@@ -182,7 +182,7 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
-ListItem.displayName = 'ListItem';
+ListItem.displayName = "ListItem";
 
 /**
  * Renders a navigation menu item that can expand to show additional details or child links.
@@ -225,7 +225,7 @@ const NavMenuListItem: React.FC<{
                         />
                       )}
                       <div className="mb-2 mt-4 text-lg font-medium">
-                        Project:{' '}
+                        Project:{" "}
                         <span className="font-bold">{activeItem.title}</span>
                       </div>
                       <p className="text-sm leading-tight text-muted-foreground">

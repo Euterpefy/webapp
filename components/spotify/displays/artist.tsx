@@ -1,10 +1,10 @@
-import React from 'react';
-import type { Artist } from '@/types/spotify/artist';
-import Image from 'next/image';
-import { DisplayFooter, DisplayName } from '.';
+import React from "react";
+import type { Artist } from "@/types/spotify/artist";
+import Image from "next/image";
+import { DisplayFooter, DisplayName } from ".";
 
 const DisplayArtist: React.FC<{ artist: Artist }> = ({ artist }) => {
-  const imageUrl = artist.images[0]?.url ?? '/spotify/default-cover.jpg';
+  const imageUrl = artist.images[0]?.url ?? "/spotify/default-cover.jpg";
   return (
     <div
       key={artist.id}
@@ -17,7 +17,7 @@ const DisplayArtist: React.FC<{ artist: Artist }> = ({ artist }) => {
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: '100%', height: 'auto', objectFit: 'cover' }} // optional
+          style={{ width: "100%", height: "auto", objectFit: "cover" }} // optional
           className="rounded-full aspect-square"
         />
       </div>
